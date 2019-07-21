@@ -1,0 +1,22 @@
+{
+  "name": "cryptotrader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aryad999/CryptoTrader.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aryad999/CryptoTrader/issues"
+  },
+  "homepage": "https://github.com/aryad999/CryptoTrader#readme",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}
