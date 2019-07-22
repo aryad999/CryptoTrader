@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/aryad999/CryptoTrader#readme",
   "dependencies": {
+    "redis": "^2.8.0",
     "request": "^2.88.0"
   }
 }
