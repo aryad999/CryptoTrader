@@ -1,14 +1,17 @@
+const krakenConfig = require('../config').kraken;
 const WebSocket = require('ws');
 
-const marketWS = new WebSocket('wss://ws.kraken.com');
+const marketWS = new WebSocket(krakenConfig.websocket);
 
 marketWS.on('open', (data) => {
-    console.log(` on open ${data}`);
 
     let subscriptionPayload = {
         event: "subscribe",
-        pair: ["XBT/CAD", "BTC/CAD"],
-        subscription: { name: "trade" }
+        pair: [krakenConfig.currencyPair.xbt_cad],
+        subscription: { 
+            name: krakenConfig.subscriptionName.ohlc,
+            interval: 1
+        }
     };
 
     marketWS.send(JSON.stringify(subscriptionPayload));
@@ -20,7 +23,7 @@ marketWS.on('open', (data) => {
 
 marketWS.on('message', (data) => {
     let messageData = JSON.parse(data);
-    if (!messageData.event) {
-        console.log(` on message ${data}`);
-    }
+    
+    console.log(` on message ${data}`);
+    
 });
