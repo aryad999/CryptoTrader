@@ -1,4 +1,4 @@
-const krakenConfig = require('../../config').kraken;
+const krakenConfig = require('../../../config').kraken;
 const WebSocket = require('ws');
 
 const marketWS = new WebSocket(krakenConfig.websocket);

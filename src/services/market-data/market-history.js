@@ -26,7 +26,10 @@ function ohlc(pair, interval) {
             console.log(`error: ${error}`)
         }
         else {
-            console.log(`body: ${JSON.stringify(body)}`);
+           //console.log(`body: ${JSON.stringify(body)}`);
+            const returnresponse = JSON.parse(body);
+            console.log(returnresponse);
+            console.log(returnresponse.result['XXBTZCAD']);
         }
     });
 }
