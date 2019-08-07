@@ -9,7 +9,16 @@ const options = {
         dev: {
             driver: "mysql",
             host: 'localhost',
-            port: '127.0.0.1',
+            port: '3306',
+            user: mysqlConfig.user,
+            password: mysqlConfig.password,
+            database: mysqlConfig.database,
+            multipleStatements: true
+        },
+        prod: {
+            driver: "mysql",
+            host: 'localhost',
+            port: '3306',
             user: mysqlConfig.user,
             password: mysqlConfig.password,
             database: mysqlConfig.database,
@@ -18,15 +27,16 @@ const options = {
     }
 };
 
+logger.info(options);
 function run(callback) {
 
-    logger.info('running migrations...');
+    logger.info('Running migrations...');
     var migrate = DBMigrate.getInstance(true, options);
     migrate.up(function (err) {
         if (err) {
             logger.error('DB Migrations error', err);
         } else {
-            logger.info('Finished DB Migrations...');
+            logger.info('Finished DB Migrations.');
         }
         callback();
     });
