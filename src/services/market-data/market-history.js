@@ -29,9 +29,10 @@ function ohlc(pair, interval) {
             }
             else {
                 //console.log(`body: ${JSON.stringify(body)}`);
+                const returnresponse = JSON.parse(body);
                 console.log(returnresponse);
                 console.log(returnresponse.result['XXBTZCAD']);
-                const returnresponse = JSON.parse(body);
+            
                 resolve(returnresponse);
 
             }

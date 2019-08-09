@@ -1,13 +1,11 @@
 const Connection = require('../../../models/connection');
 
-function insertOHLC_24h() {
+function insertOHLC_24h(params) {
     const query =
         " INSERT INTO ohlc_24h (currency_pair, time, endtime, open, high, low, close, vwap, volume, count ) " +
         " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
 
-    const params = [];
-
-        return Connection.query(query, params);
+    return Connection.query(query, params);
 }
 
 
