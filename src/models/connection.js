@@ -17,14 +17,15 @@ const pool = mysql.createPool(mysqlConnSettings);
  * @returns promise of query result
  */
 function query(query, params) {
-    pool.query(query, params, (error, rows, fields) => {
-        return new Promise((resolve, reject) => {
-            if(error){
+    return new Promise((resolve, reject) => {
+        pool.query(query, params, (error, rows, fields) => {
+            if (error) {
                 reject(error);
             }
-            else{
+            else {
                 resolve([rows, fields]);
             }
+
         });
     });
 };

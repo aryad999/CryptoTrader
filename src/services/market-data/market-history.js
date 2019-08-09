@@ -21,17 +21,23 @@ function ohlc(pair, interval) {
         qs: { pair, interval }
     }
 
-    request(options, (error, response, body) => {
-        if (error) {
-            console.log(`error: ${error}`)
-        }
-        else {
-           //console.log(`body: ${JSON.stringify(body)}`);
-            const returnresponse = JSON.parse(body);
-            console.log(returnresponse);
-            console.log(returnresponse.result['XXBTZCAD']);
-        }
+    return new Promise((resolve, reject) => {
+        request(options, (err, response, body) => {
+            if (err) {
+                console.log(`error: ${err}`)
+                reject(err);
+            }
+            else {
+                //console.log(`body: ${JSON.stringify(body)}`);
+                console.log(returnresponse);
+                console.log(returnresponse.result['XXBTZCAD']);
+                const returnresponse = JSON.parse(body);
+                resolve(returnresponse);
+
+            }
+        });
     });
+
 }
 
 ohlc("xbtcad", 21600)

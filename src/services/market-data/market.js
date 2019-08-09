@@ -1,7 +1,7 @@
-const krakenConfig = require('../../../config').kraken;
+const KrakenConfig = require('../../../config').kraken;
 const WebSocket = require('ws');
 
-const marketWS = new WebSocket(krakenConfig.websocket);
+const marketWS = new WebSocket(KrakenConfig.websocket);
 
 //add event emitter so other modules can listen to market streams
 
@@ -10,9 +10,9 @@ function subscribeToMarket(){
 
         let subscriptionPayload = {
             event: "subscribe",
-            pair: [krakenConfig.currencyPair.xbt_cad],
+            pair: [KrakenConfig.currencyPair.xbt_cad],
             subscription: { 
-                name: krakenConfig.subscriptionName.ohlc,
+                name: KrakenConfig.subscriptionName.ohlc,
                 interval: 1
             }
         };
