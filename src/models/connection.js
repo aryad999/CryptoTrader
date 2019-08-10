@@ -1,3 +1,4 @@
+
 const mysqlConfig = require('../../config').mysql;
 const mysql = require('mysql');
 
@@ -20,12 +21,12 @@ function query(query, params) {
     return new Promise((resolve, reject) => {
         pool.query(query, params, (error, rows, fields) => {
             if (error) {
+                console.log(error)
                 reject(error);
             }
             else {
                 resolve([rows, fields]);
             }
-
         });
     });
 };

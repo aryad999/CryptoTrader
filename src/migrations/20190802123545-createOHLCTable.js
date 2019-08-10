@@ -4,29 +4,29 @@ function up(db, callback) {
         " ohlc_4h " +
         " (id int AUTO_INCREMENT PRIMARY KEY NOT NULL, " +
         " currency_pair VARCHAR(16) , " +
-        " time TIMESTAMP NOT NULL, " +
-        " endtime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, " +
+        " time INT(11) NOT NULL, " +
+        " endtime INT(11) , " +
         " open DECIMAL(10,2) NOT NULL, " +
         " high DECIMAL(10,2) NOT NULL, " +
         " low DECIMAL(10,2) NOT NULL, " +
         " close DECIMAL(10,2) NOT NULL, " +
         " vwap DECIMAL(10,2) , " +
         " volume DECIMAL(14,8) NOT NULL, " +
-        " count INT NOT NULL); " +
+        " count INT ); " +
 
         " CREATE TABLE IF NOT EXISTS " +
         " ohlc_24h " +
         " (id int AUTO_INCREMENT PRIMARY KEY NOT NULL, " +
         " currency_pair VARCHAR(16) , " +
-        " time TIMESTAMP NOT NULL, " +
-        " endtime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , " +
+        " time INT(11) NOT NULL, " +
+        " endtime INT(11) , " +
         " open DECIMAL(10,2) NOT NULL, " +
         " high DECIMAL(10,2) NOT NULL, " +
         " low DECIMAL(10,2) NOT NULL, " +
         " close DECIMAL(10,2) NOT NULL, " +
         " vwap DECIMAL(10,2) , " +
         " volume DECIMAL(14,8) NOT NULL, " +
-        " count INT NOT NULL); ";
+        " count INT ); ";
 
     db.runSql(query, [], callback);
 };

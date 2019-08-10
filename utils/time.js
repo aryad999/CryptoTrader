@@ -9,7 +9,6 @@ const minuteEquivalent = {
     DAYS_7: 10080,
     DAYS_15 : 21600
 
-
 };
 
 module.exports.minuteEquivalent = minuteEquivalent;

@@ -28,11 +28,8 @@ function ohlc(pair, interval) {
                 reject(err);
             }
             else {
-                //console.log(`body: ${JSON.stringify(body)}`);
                 const returnresponse = JSON.parse(body);
-                console.log(returnresponse);
-                console.log(returnresponse.result['XXBTZCAD']);
-            
+
                 resolve(returnresponse);
 
             }
@@ -41,4 +38,4 @@ function ohlc(pair, interval) {
 
 }
 
-ohlc("xbtcad", 21600)
+module.exports.ohlc = ohlc;
