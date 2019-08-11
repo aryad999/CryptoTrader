@@ -25,7 +25,7 @@ function query(query, params) {
                 reject(error);
             }
             else {
-                resolve([rows, fields]);
+                resolve(rows);
             }
         });
     });

@@ -21,3 +21,4 @@ function getOHLCByTimestamp(timeCode, timestampFrom) {
 }
 
 module.exports.insertOHLC = insertOHLC;
+module.exports.getOHLCByTimestamp = getOHLCByTimestamp;
