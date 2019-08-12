@@ -1,6 +1,6 @@
 require('dotenv').config({path:'../.env'});
 const logger = require('../utils/logger').getLogger();
-const market = require('./services/market-data/market');
+const Market = require('./services/market-data/market');
 
 const dbMigration = require('./models/db-migration');
 const test = require('./services/data-manager/manager');
@@ -10,3 +10,4 @@ dbMigration.run(() => {
 });
 
 //start listening to market stream
+Market.subscribeToMarket();

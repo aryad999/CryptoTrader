@@ -5,6 +5,7 @@ class MarketEmitter extends EventEmitter {
 
     emitNewTick() {
         this.emit(MarketEvents.NEW_TICK);
+        console.log('new tick emitted');
     }
     subscribeToNewTick(listener) {
         this.addListener(MarketEvents.NEW_TICK, listener);
@@ -14,4 +15,4 @@ class MarketEmitter extends EventEmitter {
     }
 }
 
-module.exports.MarketEmitter = MarketEmitter;
+module.exports = MarketEmitter;

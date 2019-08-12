@@ -1,47 +1,56 @@
 const KrakenConfig = require('../../../config').kraken;
 const WebSocket = require('ws');
 const EventManager = require('../market-data/events/event-manager');
-const marketWS = new WebSocket(KrakenConfig.websocket);
+const Time = require('../../../utils/time');
+
+const marketWS_4h = new WebSocket(KrakenConfig.websocket);
+const marketWS_24h = new WebSocket(KrakenConfig.websocket);
 
 
 //add event emitter so other modules can listen to market streams
 
-function subscribeToMarket(){
+function subscribeToMarket() {
     //subscribe to market with 4h time interval
-    marketWS.on('open', (data) => {
+    marketWS_4h.on('open', (data) => {
 
         let subscriptionPayload = {
             event: "subscribe",
             pair: [KrakenConfig.currencyPair.xbt_cad],
-            subscription: { 
+            subscription: {
                 name: KrakenConfig.subscriptionName.ohlc,
-                interval: 1
+                interval: Time.minuteEquivalent.HOUR_4
             }
         };
-    
-        marketWS.send(JSON.stringify(subscriptionPayload));
+        console.log(subscriptionPayload);
+        marketWS_4h.send(JSON.stringify(subscriptionPayload));
     });
 
     //subscribe to market with 24h time interval
-    marketWS.on('open', (data) => {
+    marketWS_24h.on('open', (data) => {
 
         let subscriptionPayload = {
             event: "subscribe",
             pair: [KrakenConfig.currencyPair.xbt_cad],
-            subscription: { 
+            subscription: {
                 name: KrakenConfig.subscriptionName.ohlc,
-                interval: 1
+                interval: Time.minuteEquivalent.HOUR_24
             }
         };
-    
-        marketWS.send(JSON.stringify(subscriptionPayload));
+        console.log(subscriptionPayload);
+        marketWS_24h.send(JSON.stringify(subscriptionPayload));
     });
-    
-    marketWS.on('message', (data) => {
+
+    marketWS_4h.on('message', (data) => {
         let messageData = JSON.parse(data);
-        
-        EventManager.
-        
+        console.log(messageData);
+        EventManager.marketEvent_4h.emitNewTick();
+
+    });
+    marketWS_24h.on('message', (data) => {
+        let messageData = JSON.parse(data);
+        console.log(messageData);
+        EventManager.marketEvent_24h.emitNewTick();
+
     });
 }
 
