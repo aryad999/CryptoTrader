@@ -3,8 +3,8 @@ const MarketEvents = require('../events/market-events');
 
 class MarketEmitter extends EventEmitter {
 
-    emitNewTick() {
-        this.emit(MarketEvents.NEW_TICK);
+    emitNewTick(tickData) {
+        this.emit(MarketEvents.NEW_TICK, tickData);
         console.log('new tick emitted');
     }
     subscribeToNewTick(listener) {
