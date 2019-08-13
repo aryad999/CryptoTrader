@@ -12,14 +12,14 @@ let unsubscribedMarkets = [];
 
 function subscribeToMarket() {
 
-    EventManager.setupMarketEventEmitters();
+   // EventManager.setupMarketEventEmitters();
 
     //subscribe to market with 4h time interval
     marketWS_4h.on('open', (data) => {
 
         let subscriptionPayload = {
             event: "subscribe",
-            pair: [KrakenConfig.currencyPair.xbt_cad],
+            pair: [KrakenConfig.currencyPair.xbt_usd],
             subscription: {
                 name: KrakenConfig.subscriptionName.ohlc,
                 interval: Time.minuteEquivalent.MINUTES_1
@@ -34,7 +34,7 @@ function subscribeToMarket() {
 
         let subscriptionPayload = {
             event: "subscribe",
-            pair: [KrakenConfig.currencyPair.xbt_cad],
+            pair: [KrakenConfig.currencyPair.xbt_usd],
             subscription: {
                 name: KrakenConfig.subscriptionName.ohlc,
                 interval: Time.minuteEquivalent.HOUR_24
@@ -48,7 +48,7 @@ function subscribeToMarket() {
         let messageData = JSON.parse(data);
         if(messageData.event != 'heartbeat'){
             console.log(messageData);
-            EventManager.marketEvent_4h.emitNewTick();
+            EventManager.marketEvent_4h.emitNewTick(messageData);
         }else{
             console.log(JSON.stringify(messageData))
         }
