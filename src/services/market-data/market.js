@@ -10,9 +10,15 @@ let subscribedMarkets = [];
 let unsubscribedMarkets = [];
 //add event emitter so other modules can listen to market streams
 
+const marketEventStatuses = {
+    HEARTBEAT: 'heartbeat',
+    SYSTEM_STATUS: 'systemStatus',
+    SUBSCRIPTION_STATUS: 'subscriptionStatus'
+}
+
 function subscribeToMarket() {
 
-   // EventManager.setupMarketEventEmitters();
+    // EventManager.setupMarketEventEmitters();
 
     //subscribe to market with 4h time interval
     marketWS_4h.on('open', (data) => {
@@ -30,42 +36,47 @@ function subscribeToMarket() {
     });
 
     //subscribe to market with 24h time interval
-    marketWS_24h.on('open', (data) => {
+    // marketWS_24h.on('open', (data) => {
 
-        let subscriptionPayload = {
-            event: "subscribe",
-            pair: [KrakenConfig.currencyPair.xbt_usd],
-            subscription: {
-                name: KrakenConfig.subscriptionName.ohlc,
-                interval: Time.minuteEquivalent.HOUR_24
-            }
-        };
-        console.log('marketWS_24h sub payload: ' + JSON.stringify(subscriptionPayload));
-        marketWS_24h.send(JSON.stringify(subscriptionPayload));
-    });
+    //     let subscriptionPayload = {
+    //         event: "subscribe",
+    //         pair: [KrakenConfig.currencyPair.xbt_usd],
+    //         subscription: {
+    //             name: KrakenConfig.subscriptionName.ohlc,
+    //             interval: Time.minuteEquivalent.HOUR_24
+    //         }
+    //     };
+    //     console.log('marketWS_24h sub payload: ' + JSON.stringify(subscriptionPayload));
+    //     marketWS_24h.send(JSON.stringify(subscriptionPayload));
+    // });
 
     marketWS_4h.on('message', (data) => {
         let messageData = JSON.parse(data);
-        if(messageData.event != 'heartbeat'){
-            console.log(messageData);
+        if (messageData.event == marketEventStatuses.HEARTBEAT) {
+            
+        } else if (messageData.event == marketEventStatuses.SYSTEM_STATUS) {
+            console.log(JSON.stringify('SYSTEM_STATUS: ' + JSON.stringify(messageData)));
+        } else if (messageData.event == marketEventStatuses.SUBSCRIPTION_STATUS) {
+            console.log(JSON.stringify('SYSTEM_STATUS: ' + JSON.stringify(messageData)));
+        } else {
+            console.log('messageData: ' + messageData);
             EventManager.marketEvent_4h.emitNewTick(messageData);
-        }else{
-            console.log(JSON.stringify(messageData))
         }
-        
+
 
     });
-    marketWS_24h.on('message', (data) => {
-        let messageData = JSON.parse(data);
-        if(messageData.event != 'heartbeat'){
-            console.log('marketWS_24h on(message) ' + JSON.stringify(messageData));
-            EventManager.marketEvent_24h.emitNewTick();
-        }
-        
+    // marketWS_24h.on('message', (data) => {
+    //     let messageData = JSON.parse(data);
+    //     if (messageData.event != 'heartbeat') {
+    //         console.log('marketWS_24h on(message) ' + JSON.stringify(messageData));
+    //         EventManager.marketEvent_24h.emitNewTick();
+    //     }
 
-    });
+
+    // });
 }
 
 
 module.exports.subscribeToMarket = subscribeToMarket;
+module.exports.marketEventStatuses = marketEventStatuses;
 

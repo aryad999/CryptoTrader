@@ -1,14 +1,14 @@
 
 class Candlestick {
     constructor(
-        time,
+        endtime,
         open,
         high,
         low,
         close,
         volume
     ) {
-        this.time = time;
+        this.endtime = endtime;
         this.open = open;
         this.high = high;
         this.low = low;
@@ -16,3 +16,5 @@ class Candlestick {
         this.volume = volume;
     }
 }
+
+module.exports = Candlestick;
