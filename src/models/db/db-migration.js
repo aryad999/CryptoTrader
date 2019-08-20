@@ -1,7 +1,7 @@
-const mysqlConfig = require('../../config').mysql;
+const mysqlConfig = require('../../../config').mysql;
 const DBMigrate = require('db-migrate');
 
-const logger = require('../../utils/logger').getLogger();
+const logger = require('../../../utils/logger').getLogger();
 
 
 const options = {

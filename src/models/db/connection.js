@@ -1,5 +1,5 @@
 
-const mysqlConfig = require('../../config').mysql;
+const mysqlConfig = require('../../../config').mysql;
 const mysql = require('mysql');
 
 const mysqlConnSettings = {

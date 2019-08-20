@@ -1,4 +1,4 @@
-const Connection = require('../../../models/connection');
+const Connection = require('../../../models/db/connection');
 
 function insertOHLC(timeCode, params) {
     const query =

@@ -1,7 +1,10 @@
 const EventEmitter = require('events').EventEmitter;
 const MarketEvents = require('../events/market-events');
 const Candlestick = require('../../data-manager/models/candlestick');
-
+/**
+    Represents an emitter which would be subscribed 
+    to a specific market interval (ex: OHLC, 4h)
+*/
 class MarketEmitter extends EventEmitter {
 
     lastEmittedTickTimestamp;
@@ -24,6 +27,13 @@ class MarketEmitter extends EventEmitter {
         );
 
         this.emit(MarketEvents.NEW_TICK, candlestick);
+
+        // updates last emitted tick timestamp to represent a new candlestick period
+        // note: it is possible to receive updated candlestick data that is 
+        // still within the current candlestick time period
+        if (this.lastEmittedTickTimestamp !== candlestick.endtime) {
+            this.lastEmittedTickTimestamp = candlestick.endtime;
+        }
         console.log('new tick emitted');
     }
     subscribeToNewTick(listener) {
