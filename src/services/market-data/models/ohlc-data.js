@@ -1,20 +1,30 @@
 const Connection = require('../../../models/db/connection');
 
-function insertOHLC(timeCode, params) {
+/**
+ * 
+ * @param {string} timeInterval market time interval (ex: 4h)
+ * @param {array} params [currency_pair, time, endtime, open, high, low, close, vwap, volume, count]
+ */
+function insertOHLC(timeInterval, params) {
     const query =
-        " INSERT INTO ohlc_" + timeCode +
-        " (currency_pair, time, endtime, open, high, low, close, vwap, volume, count ) " +
+        " INSERT INTO ohlc_" + timeInterval +
+        " (currency_pair, time, endtime, open, high, low, close, vwap, volume, count) " +
         " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
 
     return Connection.query(query, params);
 }
 
-function getOHLCByTimestamp(timeCode, timestampFrom) {
+/**
+ * 
+ * @param {string} timeInterval market time interval (ex: 4h)
+ * @param {*} timestampFrom unix timestamp
+ */
+function getOHLCByTimestamp(timeInterval, timestampFrom) {
     const query =
         " SELECT time, open, high, low, close, volume " +
-        " FROM ohlc_" + timeCode +
+        " FROM ohlc_" + timeInterval +
 
-        " WHERE time > ?; "
+        " WHERE time >= ? ; ";
 
     const params = [timestampFrom];
     return Connection.query(query, params);

@@ -1,3 +1,4 @@
+//To be rebuilt in Go in future
 require('dotenv').config({path:'../.env'});
 const logger = require('../utils/logger').getLogger();
 const Market = require('./services/market-data/market');
