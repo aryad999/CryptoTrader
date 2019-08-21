@@ -11,24 +11,30 @@ const insertOhlcScript = require('../scripts/node_scripts/insert-recent-ohlc');
 // Run database migrations
 dbMigration.run(() => {
     logger.info('callback of run migrations');
+
     //check if ohlc tables are populated with historical data
     //and if not fill them with historical ohlc
     ohlcData.getOHLCByTimestamp('4h', 0)
         .then((results) => {
             if (results.length === 0) {
-                return insertOhlcScript.run();
+                logger.info('results.length === 0')
+                insertOhlcScript.run(() => {
+                    logger.info('DONE SCRIPTS');
+                    listenToMarket();
+                });
             } else {
-                return Promise.resolve();
+                listenToMarket();
             }
         })
-        .then(() => {
-            logger.info('DONE PROMISE ALL MIGRATION')
-            //setup market listeners for emitters
-            MarketManager.setupMarketListeners();
-
-            //begin subscription to market data
-            Market.subscribeToMarket();
+        .catch((err) => {
+            logger.info(err);
         });
 });
 
 
+function listenToMarket() {
+    MarketManager.setupMarketListeners();
+
+    //begin subscription to market data
+    Market.subscribeToMarket();
+}

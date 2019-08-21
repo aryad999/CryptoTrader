@@ -1,5 +1,5 @@
 function up(db, callback) {
-    var query = 
+    var query =  
         " CREATE TABLE IF NOT EXISTS " +
         " ohlc_4h " +
         " (id int AUTO_INCREMENT PRIMARY KEY NOT NULL, " +

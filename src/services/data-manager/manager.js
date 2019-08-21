@@ -7,10 +7,10 @@ let listener_4h = (tickData) => {
     logger.info(tickData)
     let ohlc = tickData.ohlc;
 
-    ohlcData.insertOHLC('4h', ohlc)
-        .then((result) => {
+    // ohlcData.insertOHLC('4h', ohlc)
+    //     .then((result) => {
 
-        })
+    //     })
 };
 
 let listener_24h = (tickData) => {
@@ -27,7 +27,7 @@ function setupMarketListeners() {
     //setup listeners and subscribe to markets
     listenToMarket_4h();
     listenToMarket_24h();
-
+    
 }
 
 function listenToMarket_4h() {

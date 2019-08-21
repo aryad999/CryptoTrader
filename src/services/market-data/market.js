@@ -3,8 +3,8 @@ const WebSocket = require('ws');
 const EventManager = require('../market-data/events/event-manager');
 const Time = require('../../../utils/time');
 
-const marketWS_4h = new WebSocket(KrakenConfig.websocket);
-const marketWS_24h = new WebSocket(KrakenConfig.websocket);
+let marketWS_4h; 
+let marketWS_24h;
 
 let subscribedMarkets = [];
 let unsubscribedMarkets = [];
@@ -18,6 +18,8 @@ const marketEventStatuses = {
 
 function subscribeToMarket() {
 
+    marketWS_4h = new WebSocket(KrakenConfig.websocket);
+    marketWS_24h = new WebSocket(KrakenConfig.websocket);
     // EventManager.setupMarketEventEmitters();
 
     //subscribe to market with 4h time interval
