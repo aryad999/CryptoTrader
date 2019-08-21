@@ -29,20 +29,24 @@ class MarketEmitter extends EventEmitter {
         );
 
         let tickData = {
-            candlestick : candlestick,
-            ohlc : ohlcTickData
+            candlestick: candlestick,
+            ohlc: ohlcTickData
         }
         logger.info(tickData);
-        
-        this.emit(MarketEvents.NEW_TICK, tickData);
 
+
+        this.emit(MarketEvents.NEW_TICK, tickData);
+        
         // updates last emitted tick timestamp to represent a new candlestick period
         // note: it is possible to receive updated candlestick data that is 
         // still within the current candlestick time period
+        console.log(this.lastEmittedTickTimestamp);
+        console.log(candlestick.endtime);
         if (this.lastEmittedTickTimestamp !== candlestick.endtime) {
             this.lastEmittedTickTimestamp = candlestick.endtime;
+            logger.info('updated lasttickTime stamp: ' + this.lastEmittedTickTimestamp + " -> " + candlestick.endtime);
         }
-        console.log('new tick emitted');
+
     }
     subscribeToNewTick(listener) {
         this.addListener(MarketEvents.NEW_TICK, listener);

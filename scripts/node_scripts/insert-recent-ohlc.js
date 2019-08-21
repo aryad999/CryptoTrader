@@ -35,12 +35,7 @@ function run(callback) {
                         ohlcResult[7]
                     );
                     try {
-                        await ohlcData.insertOHLC('24h', [
-                            ohlc.currencyPair, ohlc.time,
-                            ohlc.endtime, ohlc.open,
-                            ohlc.high, ohlc.low,
-                            ohlc.close, ohlc.vwap,
-                            ohlc.volume, ohlc.count]);
+                        await ohlcData.insert('24h', ohlc);
 
                         if (i + 1 === ohlcDataArray.length) {
                             finishedScript(callback);
@@ -79,12 +74,7 @@ function run(callback) {
                     );
                     console.log(ohlc)
                     try {
-                        await ohlcData.insertOHLC('4h', [
-                            ohlc.currencyPair, ohlc.time,
-                            ohlc.endtime, ohlc.open,
-                            ohlc.high, ohlc.low,
-                            ohlc.close, ohlc.vwap,
-                            ohlc.volume, ohlc.count]);
+                        await ohlcData.insert('4h', ohlc);
 
                         if (i + 1 === ohlcDataArray.length) {
                             finishedScript(callback);

@@ -14,7 +14,7 @@ dbMigration.run(() => {
 
     //check if ohlc tables are populated with historical data
     //and if not fill them with historical ohlc
-    ohlcData.getOHLCByTimestamp('4h', 0)
+    ohlcData.getByTimestamp('4h', 0)
         .then((results) => {
             if (results.length === 0) {
                 logger.info('results.length === 0')
