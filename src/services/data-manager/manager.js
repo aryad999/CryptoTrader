@@ -6,11 +6,14 @@ const MarketEvents = require('../market-data/events/market-events');
 let listener_4h = (tickData) => {
     logger.info(tickData)
     let ohlc = tickData.ohlc;
+    ohlc.unshift('XBTUSD');
 
-    // ohlcData.insertOHLC('4h', ohlc)
-    //     .then((result) => {
+    ohlcTime = ohlc[2];
+    if(EventManager.marketEvent_4h.lastTickTimestamp !== ohlcTime)
+    ohlcData.insertOHLC('4h', ohlc)
+        .then((result) => {
 
-    //     })
+        })
 };
 
 let listener_24h = (tickData) => {

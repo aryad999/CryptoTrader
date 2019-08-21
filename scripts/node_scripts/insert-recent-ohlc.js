@@ -100,10 +100,9 @@ function run(callback) {
 }
 
 function finishedScript(callback) {
-    console.log('finishedScript called')
     numFinished++;
+    //number of scripts to be completed
     if (numFinished === 2) {
-        console.log('finishedScript BOTH DONE')
         callback();
     }
 }

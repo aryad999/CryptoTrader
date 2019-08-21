@@ -1,4 +1,3 @@
-
 class Candlestick {
     constructor(
         endtime,

@@ -13,7 +13,7 @@ class MarketEmitter extends EventEmitter {
 
     constructor() {
         super();
-        this.lastTickTimestamp = Date.now();
+        this.lastEmittedTickTimestamp = Date.now();
     }
 
     emitNewTick(tick) {
