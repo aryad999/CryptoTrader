@@ -7,8 +7,10 @@ const currency = require('../../../utils/currency');
 const EventManager = require('../market-data/events/event-manager');
 const MarketEvents = require('../market-data/events/market-events');
 const Candlestick = require('./models/candlestick');
+const TradingAdvisor = require('../trading-advisor/advisor');
 
-let recentCandles = [];
+let recentCandles_4h = [];
+let recentCandles_24h = [];
 
 let listener_4h = (tickData) => {
     logger.info(tickData)
@@ -35,7 +37,7 @@ let listener_4h = (tickData) => {
     if (lastCandleTime !== ohlc.endtime) { //insert new candle data in db
         ohlcData.insert('4h', ohlc)
             .then((result) => {
-                return updateMostRecentCandles();
+                return updateMostRecentCandles_4h();
             })
             .then(() => {
 
@@ -43,7 +45,7 @@ let listener_4h = (tickData) => {
     } else if (lastCandleTime === ohlc.endtime) { //update candle in db with newest data
         ohlcData.updateByTimestamp('4h', ohlc.endtime, ohlc)
             .then((result) => {
-                return updateMostRecentCandles();
+                return updateMostRecentCandles_4h();
             })
             .then(() => {
 
@@ -62,10 +64,10 @@ let listener_24h = (tickData) => {
         })
 };
 
-function updateMostRecentCandles() {
+function updateMostRecentCandles_4h() {
     return ohlcData.getByMostRecent('4h', 20)
         .then((results) => {
-            recentCandles = [];
+            recentCandles_4h = [];
             _.forEach(results, (result) => {
                 let candle = new Candlestick(
                     result.endtime,
@@ -75,9 +77,8 @@ function updateMostRecentCandles() {
                     result.close,
                     result.volume
                 );
-                recentCandles.push(candle);
+                recentCandles_4h.push(candle);
             })
-            logger.info(recentCandles);
         })
         .catch((err) => {
             logger.error(err);
@@ -110,4 +111,6 @@ function unsubFromMarket_24h() {
 }
 
 
+module.exports.recentCandles_4h = recentCandles_4h;
+module.exports.recentCandles_24h = recentCandles_24h;
 module.exports.setupMarketListeners = setupMarketListeners;
