@@ -26,21 +26,7 @@ function insert(timeInterval, ohlc) {
     return Connection.query(query, params);
 }
 
-/**
- * 
- * @param {string} timeInterval market time interval (ex: 4h)
- * @param {*} timestampFrom unix timestamp
- */
-function getByTimestamp(timeInterval, timestampFrom) {
-    const query =
-        " SELECT time, open, high, low, close, volume " +
-        " FROM ohlc_" + timeInterval +
 
-        " WHERE time >= ? ; ";
-
-    const params = [timestampFrom];
-    return Connection.query(query, params);
-}
 
 /**
  * 
@@ -79,6 +65,39 @@ function updateByTimestamp(timeInterval, endTime, ohlc) {
 
     return Connection.query(query, params);
 }
+
+/**
+ * 
+ * @param {string} timeInterval market time interval (ex: 4h)
+ * @param {*} timestampFrom unix timestamp
+ */
+function getByTimestamp(timeInterval, timestampFrom) {
+    const query =
+        " SELECT time, open, high, low, close, volume " +
+        " FROM ohlc_" + timeInterval +
+
+        " WHERE time >= ? ; ";
+
+    const params = [timestampFrom];
+    return Connection.query(query, params);
+}
+
+/**
+ * 
+ * @param {string} timeInterval market time interval (ex: 4h)
+ * @param {number} limit numnber of most recent candles
+ */
+function getByMostRecent(timeInterval, limit) {
+    const query =
+        " SELECT endtime, open, high, low, close, volume " +
+        " FROM ohlc_" + timeInterval +
+
+        " ORDER BY endtime DESC LIMIT ? ;"
+
+    const params = [limit];
+    return Connection.query(query, params);
+}
 module.exports.insert = insert;
-module.exports.getByTimestamp = getByTimestamp;
 module.exports.updateByTimestamp = updateByTimestamp;
+module.exports.getByTimestamp = getByTimestamp;
+module.exports.getByMostRecent = getByMostRecent;
