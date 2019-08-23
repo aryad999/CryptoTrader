@@ -23,11 +23,13 @@ function createMessageSignature(path, postData, nonce) {
 
 
 function getAccountBalance() {
-	let uri = '/' + kraken_api_version + '/private/TradeBalance';
+	let uri = '/' + kraken_api_version + '/private/Balance';
 	let url = kraken_api_url + uri;
 
 	let nonce = (new Date() * 1000);
-	let postData = {nonce: nonce};
+	let postData = {
+		nonce: nonce
+	};
 
 	let headersJSON = {
 		'API-Key': kraken_api_key,
@@ -57,6 +59,276 @@ function getAccountBalance() {
 	});
 
 }
+
+function getOpenOrders() {
+	let uri = '/' + kraken_api_version + '/private/Balance';
+	let url = kraken_api_url + uri;
+
+	let nonce = (new Date() * 1000);
+	let postData = {
+		nonce: nonce
+	};
+
+	let headersJSON = {
+		'API-Key': kraken_api_key,
+		'API-Sign': createMessageSignature(uri, postData, nonce)
+	}
+
+	let options = {
+		url: url,
+		method: 'POST',
+		headers: headersJSON,
+		body: qs.stringify(postData)
+	}
+
+	return new Promise((resolve, reject) => {
+		request(options, (err, response, body) => {
+			if (err) {
+				console.log(`error: ${err}`)
+				reject(err);
+			}
+			else {
+				const returnresponse = JSON.parse(body);
+
+				resolve(returnresponse);
+
+			}
+		});
+	});
+
+}
+
+function getClosedOrders() {
+	let uri = '/' + kraken_api_version + '/private/Balance';
+	let url = kraken_api_url + uri;
+
+	let nonce = (new Date() * 1000);
+	let postData = {
+		nonce: nonce
+	};
+
+	let headersJSON = {
+		'API-Key': kraken_api_key,
+		'API-Sign': createMessageSignature(uri, postData, nonce)
+	}
+
+	let options = {
+		url: url,
+		method: 'POST',
+		headers: headersJSON,
+		body: qs.stringify(postData)
+	}
+
+	return new Promise((resolve, reject) => {
+		request(options, (err, response, body) => {
+			if (err) {
+				console.log(`error: ${err}`)
+				reject(err);
+			}
+			else {
+				const returnresponse = JSON.parse(body);
+
+				resolve(returnresponse);
+
+			}
+		});
+	});
+
+}
+
+function queryOrdersInfo() {
+	let uri = '/' + kraken_api_version + '/private/Balance';
+	let url = kraken_api_url + uri;
+
+	let nonce = (new Date() * 1000);
+	let postData = {
+		nonce: nonce
+	};
+
+	let headersJSON = {
+		'API-Key': kraken_api_key,
+		'API-Sign': createMessageSignature(uri, postData, nonce)
+	}
+
+	let options = {
+		url: url,
+		method: 'POST',
+		headers: headersJSON,
+		body: qs.stringify(postData)
+	}
+
+	return new Promise((resolve, reject) => {
+		request(options, (err, response, body) => {
+			if (err) {
+				console.log(`error: ${err}`)
+				reject(err);
+			}
+			else {
+				const returnresponse = JSON.parse(body);
+
+				resolve(returnresponse);
+
+			}
+		});
+	});
+
+}
+
+function getTradesHistory() {
+	let uri = '/' + kraken_api_version + '/private/Balance';
+	let url = kraken_api_url + uri;
+
+	let nonce = (new Date() * 1000);
+	let postData = {
+		nonce: nonce
+	};
+
+	let headersJSON = {
+		'API-Key': kraken_api_key,
+		'API-Sign': createMessageSignature(uri, postData, nonce)
+	}
+
+	let options = {
+		url: url,
+		method: 'POST',
+		headers: headersJSON,
+		body: qs.stringify(postData)
+	}
+
+	return new Promise((resolve, reject) => {
+		request(options, (err, response, body) => {
+			if (err) {
+				console.log(`error: ${err}`)
+				reject(err);
+			}
+			else {
+				const returnresponse = JSON.parse(body);
+
+				resolve(returnresponse);
+
+			}
+		});
+	});
+
+}
+
+
+function getOpenPositions() {
+	let uri = '/' + kraken_api_version + '/private/Balance';
+	let url = kraken_api_url + uri;
+
+	let nonce = (new Date() * 1000);
+	let postData = {
+		nonce: nonce
+	};
+
+	let headersJSON = {
+		'API-Key': kraken_api_key,
+		'API-Sign': createMessageSignature(uri, postData, nonce)
+	}
+
+	let options = {
+		url: url,
+		method: 'POST',
+		headers: headersJSON,
+		body: qs.stringify(postData)
+	}
+
+	return new Promise((resolve, reject) => {
+		request(options, (err, response, body) => {
+			if (err) {
+				console.log(`error: ${err}`)
+				reject(err);
+			}
+			else {
+				const returnresponse = JSON.parse(body);
+
+				resolve(returnresponse);
+
+			}
+		});
+	});
+
+}
+
+
+function addStandardOrder() {
+	let uri = '/' + kraken_api_version + '/private/Balance';
+	let url = kraken_api_url + uri;
+
+	let nonce = (new Date() * 1000);
+	let postData = {
+		nonce: nonce
+	};
+
+	let headersJSON = {
+		'API-Key': kraken_api_key,
+		'API-Sign': createMessageSignature(uri, postData, nonce)
+	}
+
+	let options = {
+		url: url,
+		method: 'POST',
+		headers: headersJSON,
+		body: qs.stringify(postData)
+	}
+
+	return new Promise((resolve, reject) => {
+		request(options, (err, response, body) => {
+			if (err) {
+				console.log(`error: ${err}`)
+				reject(err);
+			}
+			else {
+				const returnresponse = JSON.parse(body);
+
+				resolve(returnresponse);
+
+			}
+		});
+	});
+
+}
+
+
+function cancelOpenOrder() {
+	let uri = '/' + kraken_api_version + '/private/Balance';
+	let url = kraken_api_url + uri;
+
+	let nonce = (new Date() * 1000);
+	let postData = {
+		nonce: nonce
+	};
+
+	let headersJSON = {
+		'API-Key': kraken_api_key,
+		'API-Sign': createMessageSignature(uri, postData, nonce)
+	}
+
+	let options = {
+		url: url,
+		method: 'POST',
+		headers: headersJSON,
+		body: qs.stringify(postData)
+	}
+
+	return new Promise((resolve, reject) => {
+		request(options, (err, response, body) => {
+			if (err) {
+				console.log(`error: ${err}`)
+				reject(err);
+			}
+			else {
+				const returnresponse = JSON.parse(body);
+
+				resolve(returnresponse);
+
+			}
+		});
+	});
+
+}
+
 
 getAccountBalance()
 	.then(result => {
