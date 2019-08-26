@@ -21,7 +21,9 @@ function createMessageSignature(path, postData, nonce) {
 	return hmac_digest;
 }
 
-
+/**
+ * 
+ */
 function getAccountBalance() {
 	let uri = '/' + kraken_api_version + '/private/Balance';
 	let url = kraken_api_url + uri;
@@ -60,8 +62,11 @@ function getAccountBalance() {
 
 }
 
+/**
+ * 
+ */
 function getOpenOrders() {
-	let uri = '/' + kraken_api_version + '/private/Balance';
+	let uri = '/' + kraken_api_version + '/private/OpenOrders';
 	let url = kraken_api_url + uri;
 
 	let nonce = (new Date() * 1000);
@@ -98,8 +103,11 @@ function getOpenOrders() {
 
 }
 
+/**
+ * 
+ */
 function getClosedOrders() {
-	let uri = '/' + kraken_api_version + '/private/Balance';
+	let uri = '/' + kraken_api_version + '/private/ClosedOrders';
 	let url = kraken_api_url + uri;
 
 	let nonce = (new Date() * 1000);
@@ -136,12 +144,17 @@ function getClosedOrders() {
 
 }
 
-function queryOrdersInfo() {
-	let uri = '/' + kraken_api_version + '/private/Balance';
+/**
+ * 
+ * @param {array} transactionIDs array of transactions ids to get info for
+ */
+function queryOrdersInfo(transactionIDs) {
+	let uri = '/' + kraken_api_version + '/private/QueryOrders';
 	let url = kraken_api_url + uri;
 
 	let nonce = (new Date() * 1000);
 	let postData = {
+		txid: transactionIDs.join(),
 		nonce: nonce
 	};
 
@@ -174,8 +187,11 @@ function queryOrdersInfo() {
 
 }
 
+/**
+ * 
+ */
 function getTradesHistory() {
-	let uri = '/' + kraken_api_version + '/private/Balance';
+	let uri = '/' + kraken_api_version + '/private/TradesHistory';
 	let url = kraken_api_url + uri;
 
 	let nonce = (new Date() * 1000);
@@ -212,9 +228,11 @@ function getTradesHistory() {
 
 }
 
-
+/**
+ * 
+ */
 function getOpenPositions() {
-	let uri = '/' + kraken_api_version + '/private/Balance';
+	let uri = '/' + kraken_api_version + '/private/OpenPositions';
 	let url = kraken_api_url + uri;
 
 	let nonce = (new Date() * 1000);
@@ -333,4 +351,21 @@ function cancelOpenOrder() {
 getAccountBalance()
 	.then(result => {
 		logger.info(result);
+		return getTradesHistory();
+		
 	})
+	.then(result => {
+		logger.info(JSON.stringify(result));
+		return getOpenOrders();
+	})
+	.then(result => {
+		logger.info(JSON.stringify(result));
+		return getOpenPositions();
+	})
+	.then(result => {
+		logger.info(JSON.stringify(result));
+	})
+
+
+
+
