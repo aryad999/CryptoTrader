@@ -40,7 +40,8 @@ let listener_4h = (tickData) => {
                 return updateMostRecentCandles_4h();
             })
             .then(() => {
-
+                logger.info(recentCandles_4h)
+                TradingAdvisor.beginAnalysis();
             })
     } else if (lastCandleTime === ohlc.endtime) { //update candle in db with newest data
         ohlcData.updateByTimestamp('4h', ohlc.endtime, ohlc)
@@ -48,7 +49,7 @@ let listener_4h = (tickData) => {
                 return updateMostRecentCandles_4h();
             })
             .then(() => {
-
+                TradingAdvisor.beginAnalysis();
             })
     }
 
@@ -67,7 +68,7 @@ let listener_24h = (tickData) => {
 function updateMostRecentCandles_4h() {
     return ohlcData.getByMostRecent('4h', 20)
         .then((results) => {
-            recentCandles_4h = [];
+            this.recentCandles_4h = [];
             _.forEach(results, (result) => {
                 let candle = new Candlestick(
                     result.endtime,
@@ -77,7 +78,7 @@ function updateMostRecentCandles_4h() {
                     result.close,
                     result.volume
                 );
-                recentCandles_4h.push(candle);
+                this.recentCandles_4h.push(candle);
             })
         })
         .catch((err) => {

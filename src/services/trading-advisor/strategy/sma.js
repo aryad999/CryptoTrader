@@ -1,3 +1,4 @@
+const logger = require('../../../../utils/logger').getLogger();
 const _ = require('lodash');
 
 
@@ -6,8 +7,9 @@ const _ = require('lodash');
  * @param {array} candles array of candles in time DESC order (most recent to oldest)
  */
 function calculateSMA(candles, period) {
-
+    logger.info(candles);
     let smas = [];
+    //iterate through entire candles array and use each element as the new base for the SMA
     for (let i = 0; i < candles.length; i++) {
         let priceTotal = 0;
         for (let j = i; j < (j + period); j++) {
@@ -21,7 +23,7 @@ function calculateSMA(candles, period) {
         }
         smas.push(sma);
     }
-
+    logger.info(smas);
     return smas;
 }
 
