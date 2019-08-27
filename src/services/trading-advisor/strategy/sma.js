@@ -28,5 +28,15 @@ function calculateSMA(candles, period) {
     return smas;
 }
 
-
+/**
+ * 
+ * @param {array} shortPeriodSMA 
+ * @param {array} midPeriodSMA 
+ * @param {array} longPeriodSMA 
+ */
+function calculateCross(shortPeriodSMA, midPeriodSMA, longPeriodSMA) {
+    for (i = 0; i < longPeriodSMA.length; i++) {
+        
+    }
+}
 module.exports.calculateSMA = calculateSMA;

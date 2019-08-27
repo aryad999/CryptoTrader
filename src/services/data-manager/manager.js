@@ -28,7 +28,6 @@ let listener_4h = (tickData) => {
         tickOHLC[6],
         tickOHLC[7],
         tickOHLC[8]
-
     )
 
     console.log('lastCandleTime' + lastCandleTime);
@@ -48,7 +47,7 @@ let listener_4h = (tickData) => {
                 return updateMostRecentCandles_4h(recentCandles_4h);
             })
             .then(() => {
-                TradingAdvisor.beginAnalysis();
+                TradingAdvisor.beginAnalysis(recentCandles_4h);
             })
     }
 

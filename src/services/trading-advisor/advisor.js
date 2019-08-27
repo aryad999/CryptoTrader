@@ -17,4 +17,6 @@ function beginAnalysis(recentCandles){
 }
 
 
+
+
 module.exports.beginAnalysis = beginAnalysis;
