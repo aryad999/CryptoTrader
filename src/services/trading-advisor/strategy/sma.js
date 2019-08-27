@@ -34,9 +34,42 @@ function calculateSMA(candles, period) {
  * @param {array} midPeriodSMA 
  * @param {array} longPeriodSMA 
  */
-function calculateCross(shortPeriodSMA, midPeriodSMA, longPeriodSMA) {
-    for (i = 0; i < longPeriodSMA.length; i++) {
-        
+function calculateUpCross(shortPeriodSMA, midPeriodSMA, longPeriodSMA) {
+
+    for (i = 0; i < longPeriodSMA.length - 1; i++) {
+        let shortCandle = shortPeriodSMA[i];
+        let midCandle = midPeriodSMA[i];
+        let longCandle = longPeriodSMA[i];
+        let previousShortCandle = shortPeriodSMA[i + 1];
+        let previousMidCandle = midPeriodSMA[i + 1];
+        let previousLongCandle = longPeriodSMA[i + 1];
+
+        if ((shortCandle.close > midCandle.close) && (previousShortCandle.close < midCandle.close)) {
+            
+        }
+    }
+}
+
+
+/**
+ * 
+ * @param {array} shortPeriodSMA 
+ * @param {array} midPeriodSMA 
+ * @param {array} longPeriodSMA 
+ */
+function calculateDownCross(shortPeriodSMA, midPeriodSMA, longPeriodSMA) {
+
+    for (i = 0; i < longPeriodSMA.length - 1; i++) {
+        let shortCandle = shortPeriodSMA[i];
+        let midCandle = midPeriodSMA[i];
+        let longCandle = longPeriodSMA[i];
+        let previousShortCandle = shortPeriodSMA[i + 1];
+        let previousMidCandle = midPeriodSMA[i + 1];
+        let previousLongCandle = longPeriodSMA[i + 1];
+
+        if ((shortCandle.close < midCandle.close) && (previousShortCandle.close > midCandle.close)) {
+
+        }
     }
 }
 module.exports.calculateSMA = calculateSMA;
