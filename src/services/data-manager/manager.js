@@ -41,7 +41,7 @@ let listener_4h = (tickData) => {
             })
             .then(() => {
                 logger.info(recentCandles_4h)
-                TradingAdvisor.beginAnalysis();
+                TradingAdvisor.beginAnalysis(recentCandles_4h);
             })
     } else if (lastCandleTime === ohlc.endtime) { //update candle in db with newest data
         ohlcData.updateByTimestamp('4h', ohlc.endtime, ohlc)
@@ -68,7 +68,7 @@ let listener_24h = (tickData) => {
 function updateMostRecentCandles_4h() {
     return ohlcData.getByMostRecent('4h', 20)
         .then((results) => {
-            this.recentCandles_4h = [];
+            recentCandles_4h = [];
             _.forEach(results, (result) => {
                 let candle = new Candlestick(
                     result.endtime,
@@ -78,7 +78,7 @@ function updateMostRecentCandles_4h() {
                     result.close,
                     result.volume
                 );
-                this.recentCandles_4h.push(candle);
+                recentCandles_4h.push(candle);
             })
         })
         .catch((err) => {
@@ -112,6 +112,4 @@ function unsubFromMarket_24h() {
 }
 
 
-module.exports.recentCandles_4h = recentCandles_4h;
-module.exports.recentCandles_24h = recentCandles_24h;
 module.exports.setupMarketListeners = setupMarketListeners;
