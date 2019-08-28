@@ -41,10 +41,10 @@ class MarketEmitter extends EventEmitter {
         // note: it is possible to receive updated candlestick data that is 
         // still within the current candlestick time period
         console.log(this.lastEmittedTickTimestamp);
-        console.log(candlestick.endtime);
-        if (this.lastEmittedTickTimestamp !== candlestick.endtime) {
-            this.lastEmittedTickTimestamp = candlestick.endtime;
-            logger.info('updated lasttickTime stamp: ' + this.lastEmittedTickTimestamp + " -> " + candlestick.endtime);
+        console.log(candlestick.time);
+        if (this.lastEmittedTickTimestamp !== candlestick.time) {
+            this.lastEmittedTickTimestamp = candlestick.time;
+            logger.info('updated lasttickTime stamp: ' + this.lastEmittedTickTimestamp + " -> " + candlestick.time);
         }
 
     }

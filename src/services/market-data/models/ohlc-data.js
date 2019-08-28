@@ -3,18 +3,18 @@ const Connection = require('../../../models/db/connection');
 /**
  * 
  * @param {string} timeInterval market time interval (ex: 4h)
- * @param {OHLC} params [currency_pair, time, endtime, open, high, low, close, vwap, volume, count]
+ * @param {OHLC} params [currency_pair, updated_time, time, open, high, low, close, vwap, volume, count]
  */
 function insert(timeInterval, ohlc) {
     const query =
         " INSERT INTO ohlc_" + timeInterval +
-        " (currency_pair, time, endtime, open, high, low, close, vwap, volume, count) " +
+        " (currency_pair, updated_time, time, open, high, low, close, vwap, volume, count) " +
         " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
 
     let params = [
         ohlc.currencyPair,
+        ohlc.updated_time,
         ohlc.time,
-        ohlc.endtime,
         ohlc.open,
         ohlc.high,
         ohlc.low,
@@ -31,15 +31,15 @@ function insert(timeInterval, ohlc) {
 /**
  * 
  * @param {*} timeInterval market time interval (ex: 4h)
- * @param {*} endTime timestamp for ohlc
- * @param {OHLC} ohlc [time, endtime, open, high, low, close, vwap, volume, count]
+ * @param {*} time timestamp for ohlc
+ * @param {OHLC} ohlc [updated_time, time, open, high, low, close, vwap, volume, count]
  */
-function updateByTimestamp(timeInterval, endTime, ohlc) {
+function updateByTimestamp(timeInterval, time, ohlc) {
     const query =
         " UPDATE  ohlc_" + timeInterval +
         " SET  " +
+        " updated_time = ?, " +
         " time = ?, " +
-        " endtime = ?, " +
         " open = ?, " +
         " high = ?, " +
         " low = ?, " +
@@ -48,11 +48,11 @@ function updateByTimestamp(timeInterval, endTime, ohlc) {
         " volume = ?, " +
         " count = ? " +
 
-        " WHERE endtime = ? ; ";
+        " WHERE time = ? ; ";
 
     let params = [
+        ohlc.updated_time,
         ohlc.time,
-        ohlc.endtime,
         ohlc.open,
         ohlc.high,
         ohlc.low,
@@ -60,7 +60,7 @@ function updateByTimestamp(timeInterval, endTime, ohlc) {
         ohlc.vwap,
         ohlc.volume,
         ohlc.count,
-        endTime
+        time
     ]
 
     return Connection.query(query, params);
@@ -89,10 +89,10 @@ function getByTimestamp(timeInterval, timestampFrom) {
  */
 function getByMostRecent(timeInterval, limit) {
     const query =
-        " SELECT endtime, open, high, low, close, volume " +
+        " SELECT time, open, high, low, close, volume " +
         " FROM ohlc_" + timeInterval +
 
-        " ORDER BY endtime DESC LIMIT ? ;"
+        " ORDER BY time DESC LIMIT ? ;"
 
     const params = [limit];
     return Connection.query(query, params);

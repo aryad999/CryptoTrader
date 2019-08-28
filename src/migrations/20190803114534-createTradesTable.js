@@ -4,7 +4,7 @@ function up(db, callback) {
         // " trades " +
         // " (id int AUTO_INCREMENT PRIMARY KEY NOT NULL, " +
         // " currency_pair VARCHAR(16) , " +
-        // " time INT(11) NOT NULL, " +
+        // " updated_time INT(11) NOT NULL, " +
         // " endtime INT(11) , " +
         // " open DECIMAL(10,2) NOT NULL, " +
         // " high DECIMAL(10,2) NOT NULL, " +

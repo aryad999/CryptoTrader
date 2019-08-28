@@ -1,13 +1,13 @@
 class Candlestick {
     constructor(
-        endtime,
+        time,
         open,
         high,
         low,
         close,
         volume
     ) {
-        this.endtime = endtime;
+        this.time = time;
         this.open = open;
         this.high = high;
         this.low = low;
