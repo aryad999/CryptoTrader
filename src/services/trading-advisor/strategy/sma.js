@@ -19,7 +19,7 @@ function calculateSMA(candles, period) {
         }
         let smaValue = priceTotal / smaPeriodCount;
         let sma = {
-            smaValue: smaValue,
+            value: smaValue,
             endTime: candles[i].endtime
         }
         smas.push(sma);
@@ -37,15 +37,18 @@ function calculateSMA(candles, period) {
 function calculateUpCross(shortPeriodSMA, midPeriodSMA, longPeriodSMA) {
 
     for (i = 0; i < longPeriodSMA.length - 1; i++) {
-        let shortCandle = shortPeriodSMA[i];
-        let midCandle = midPeriodSMA[i];
-        let longCandle = longPeriodSMA[i];
-        let previousShortCandle = shortPeriodSMA[i + 1];
-        let previousMidCandle = midPeriodSMA[i + 1];
-        let previousLongCandle = longPeriodSMA[i + 1];
+        let shortSMA = shortPeriodSMA[i];
+        let midSMA = midPeriodSMA[i];
+        let longSMA = longPeriodSMA[i];
+        let previousShortSMA = shortPeriodSMA[i + 1];
+        let previousMidSMA = midPeriodSMA[i + 1];
+        let previousLongSMA = longPeriodSMA[i + 1];
 
-        if ((shortCandle.close > midCandle.close) && (previousShortCandle.close < midCandle.close)) {
-            
+        if ((shortSMA.value > midSMA.value) && (previousShortSMA.value < midSMA.value)) {
+            logger.info('UPCROSS SHORT CANDLE 1:')
+            logger.info(shortSMA)
+            logger.info('UPCROSS MID CANDLE 1:')
+            logger.info(midSMA)
         }
     }
 }
@@ -60,16 +63,19 @@ function calculateUpCross(shortPeriodSMA, midPeriodSMA, longPeriodSMA) {
 function calculateDownCross(shortPeriodSMA, midPeriodSMA, longPeriodSMA) {
 
     for (i = 0; i < longPeriodSMA.length - 1; i++) {
-        let shortCandle = shortPeriodSMA[i];
-        let midCandle = midPeriodSMA[i];
-        let longCandle = longPeriodSMA[i];
-        let previousShortCandle = shortPeriodSMA[i + 1];
-        let previousMidCandle = midPeriodSMA[i + 1];
-        let previousLongCandle = longPeriodSMA[i + 1];
+        let shortSMA = shortPeriodSMA[i];
+        let midSMA = midPeriodSMA[i];
+        let longSMA = longPeriodSMA[i];
+        let previousShortSMA = shortPeriodSMA[i + 1];
+        let previousMidSMA = midPeriodSMA[i + 1];
+        let previousLongSMA = longPeriodSMA[i + 1];
 
-        if ((shortCandle.close < midCandle.close) && (previousShortCandle.close > midCandle.close)) {
-
+        if ((shortSMA.value < midSMA.value) && (previousShortSMA.value > midSMA.value)) {
+            logger.info('DOWNCROSS SHORT CANDLE')
+            logger.info(shortSMA);
         }
     }
 }
 module.exports.calculateSMA = calculateSMA;
+module.exports.calculateUpCross = calculateUpCross;
+module.exports.calculateDownCross = calculateDownCross;
