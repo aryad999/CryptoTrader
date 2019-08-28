@@ -20,7 +20,7 @@ function calculateSMA(candles, period) {
         let smaValue = priceTotal / smaPeriodCount;
         let sma = {
             value: smaValue,
-            endTime: candles[i].endtime
+            time: candles[i].time
         }
         smas.push(sma);
     }
@@ -45,14 +45,17 @@ function calculateUpCross(shortPeriodSMA, midPeriodSMA, longPeriodSMA) {
         let previousLongSMA = longPeriodSMA[i + 1];
 
         if ((shortSMA.value > midSMA.value) && (previousShortSMA.value < previousMidSMA.value)) {
-            logger.info('UPCROSS SHORT CANDLE 1:')
+            logger.info('BUY ORDER AT')
             logger.info(shortSMA)
             logger.info('UPCROSS MID CANDLE 1:')
             logger.info(midSMA)
-            logger.info('UPCROSS SHORT PREVIOUS CANDLE 1:')
-            logger.info(previousShortSMA)
-            logger.info('UPCROSS MID PREVIOUS CANDLE 1:')
-            logger.info(previousMidSMA)
+            let cross = {
+                didCross: true,
+                time: shortSMA.time
+            }
+            return 
+        } else {
+
         }
     }
 }

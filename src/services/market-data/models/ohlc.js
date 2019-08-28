@@ -2,8 +2,8 @@ class OHLC {
     constructor(
         currencyPair,
         timeInterval,
+        updated_time,
         time,
-        endtime,
         open,
         high,
         low,
@@ -14,8 +14,8 @@ class OHLC {
     ) {
         this.currencyPair = currencyPair;
         this.timeInterval = timeInterval;
+        this.updated_time = updated_time;
         this.time = time;
-        this.endtime = endtime;
         this.open = open;
         this.high = high;
         this.low = low;

@@ -4,8 +4,8 @@ function up(db, callback) {
         " ohlc_4h " +
         " (id int AUTO_INCREMENT PRIMARY KEY NOT NULL, " +
         " currency_pair VARCHAR(16) , " +
+        " updated_time INT(11) NOT NULL, " +
         " time INT(11) NOT NULL, " +
-        " endtime INT(11) , " +
         " open DECIMAL(10,2) NOT NULL, " +
         " high DECIMAL(10,2) NOT NULL, " +
         " low DECIMAL(10,2) NOT NULL, " +
@@ -18,8 +18,8 @@ function up(db, callback) {
         " ohlc_24h " +
         " (id int AUTO_INCREMENT PRIMARY KEY NOT NULL, " +
         " currency_pair VARCHAR(16) , " +
+        " updated_time INT(11) NOT NULL, " +
         " time INT(11) NOT NULL, " +
-        " endtime INT(11) , " +
         " open DECIMAL(10,2) NOT NULL, " +
         " high DECIMAL(10,2) NOT NULL, " +
         " low DECIMAL(10,2) NOT NULL, " +
