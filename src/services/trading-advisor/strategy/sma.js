@@ -53,11 +53,13 @@ function calculateUpCross(shortPeriodSMA, midPeriodSMA, longPeriodSMA) {
                 didCross: true,
                 time: shortSMA.time
             }
-            return 
-        } else {
-
+            return cross;
         }
     }
+    return {
+        didCross: false
+    }
+
 }
 
 

@@ -72,7 +72,6 @@ function run(callback) {
                         ohlcResult[6],
                         ohlcResult[7]
                     );
-                    console.log(ohlc)
                     try {
                         await ohlcData.insert('4h', ohlc);
 
