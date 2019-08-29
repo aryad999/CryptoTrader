@@ -5,7 +5,7 @@ const MarketHistory = require('../../src/services/market-data/market-history');
 const _ = require('lodash');
 const time = require('../../utils/time').minuteEquivalent;
 
-const ohlcData = require('../../src/services/market-data/models/ohlc-data');
+const ohlcData = require('../../src/services/market-data/models/db/ohlc-data');
 const OHLC = require('../../src/services/market-data/models/ohlc');
 
 let numFinished = 0;

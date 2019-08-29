@@ -1,4 +1,4 @@
-const Connection = require('../../../models/db/connection');
+const Connection = require('../../../../models/db/connection');
 
 /**
  * 
