@@ -14,8 +14,8 @@ function beginAnalysis(recentCandles) {
     let sma_period_8 = SMA.calculateSMA(recentCandles, 8);
     let sma_period_13 = SMA.calculateSMA(recentCandles, 13);
 
-    //check order table to see if order has been placed -> if so, check for downcross to sell order
-    //if not, see if opportunity exists to buy -> if so, check with risk management
+    //check order table to see if order has been placed and is still open-> if so, check for downcross to see when to sell order
+    //if no open orders, see if opportunity exists to buy by checking upcross-> if so, check with risk management to then place order
     let cross = SMA.calculateUpCross(sma_period_5, sma_period_8, sma_period_13);
     logger.info(cross);
     // SMA.calculateDownCross(sma_period_5, sma_period_8, sma_period_13)
