@@ -348,22 +348,14 @@ function cancelOpenOrder() {
 }
 
 
-getAccountBalance()
-	.then(result => {
-		logger.info(result);
-		return getTradesHistory();
-		
-	})
+getOpenOrders()
 	.then(result => {
 		logger.info(JSON.stringify(result));
-		return getOpenOrders();
+		return getClosedOrders();
+
 	})
 	.then(result => {
-		logger.info(JSON.stringify(result));
-		return getOpenPositions();
-	})
-	.then(result => {
-		logger.info(JSON.stringify(result));
+		logger.info(JSON.stringify(result))
 	})
 
 

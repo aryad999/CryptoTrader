@@ -5,7 +5,7 @@ const Market = require('./services/market-data/market');
 
 const dbMigration = require('./models/db/db-migration');
 const MarketManager = require('./services/data-manager/manager');
-const ohlcData = require('./services/market-data/models/ohlc-data');
+const ohlcData = require('./services/market-data/models/db/ohlc-data');
 const insertOhlcScript = require('../scripts/node_scripts/insert-recent-ohlc');
 
 // Run database migrations
