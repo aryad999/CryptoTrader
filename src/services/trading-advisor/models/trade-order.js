@@ -14,3 +14,5 @@ class TradeOrder {
         this.volume = volume
     }
 }
+
+module.exports = TradeOrder;

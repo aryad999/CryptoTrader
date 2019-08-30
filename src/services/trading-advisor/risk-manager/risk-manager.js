@@ -4,3 +4,5 @@ const Config = require('../../../../config').risk;
 function calculateOrderVolume(){
     return Config.default_volume;
 }
+
+module.exports.calculateOrderVolume = calculateOrderVolume;

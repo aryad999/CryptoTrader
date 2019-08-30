@@ -4,8 +4,11 @@ const _ = require('lodash');
 const DataManager = require('../data-manager/manager');
 const SMA = require('./strategy/sma');
 const Trades = require('./models/db/trades');
+const TradeOrder = require('./models/trade-order');
 const TradeCandles = require('./models/db/trade-candles');
+const TradeMaker = require('../trade-maker/trade-maker');
 const RiskManager = require('../trading-advisor/risk-manager/risk-manager');
+const Currency = require('../../../utils/currency');
 
 let sma_period_5 = [];
 let sma_period_8 = [];
@@ -39,7 +42,13 @@ function beginAnalysis(recentCandles) {
 function createOrderFromUpCross() {
     let upCross = SMA.calculateUpCross(sma_period_5, sma_period_8, sma_period_13);
     if (upCross.didCross) {
-
+        let tradeOrder = new TradeOrder(
+            Currency.XBTUSD,
+            'buy',
+            'market',
+            RiskManager.calculateOrderVolume()
+        );
+        TradeMaker.submitTradeOrder(tradeOrder);
     }
 }
 

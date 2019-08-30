@@ -270,13 +270,17 @@ function getOpenPositions() {
 }
 
 
-function addStandardOrder() {
+function addStandardOrder(tradeOrder) {
 	let uri = '/' + kraken_api_version + '/private/Balance';
 	let url = kraken_api_url + uri;
 
 	let nonce = (new Date() * 1000);
 	let postData = {
-		nonce: nonce
+		nonce: nonce,
+		pair: tradeOrder.currency_pair,
+		type: tradeOrder.action,
+		ordertype: tradeOrder.type,
+		volume: tradeOrder.volume
 	};
 
 	let headersJSON = {
@@ -359,5 +363,13 @@ getOpenOrders()
 	})
 
 
+module.exports.getAccountBalance = getAccountBalance;
+module.exports.getOpenOrders = getOpenOrders;
+module.exports.getClosedOrders = getClosedOrders;
+module.exports.queryOrdersInfo = queryOrdersInfo;
+module.exports.getTradesHistory = getTradesHistory;
+module.exports.getOpenPositions = getOpenPositions;
+module.exports.addStandardOrder = addStandardOrder;
+module.exports.cancelOpenOrder = cancelOpenOrder;
 
 
