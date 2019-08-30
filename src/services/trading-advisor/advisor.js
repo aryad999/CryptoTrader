@@ -32,9 +32,13 @@ function beginAnalysis(recentCandles) {
                 } else if (trade_type === 'buy') {
                     createOrderFromDownCross();
                 }
+            } else if (result.length === 0) {
+                //the bot has not made any trades yet
+                //so we look for a good entry point to buy
+                createOrderFromUpCross();
             }
         })
-    }
+}
 
 function createOrderFromUpCross() {
     let upCross = SMA.calculateUpCross(sma_period_5, sma_period_8, sma_period_13);

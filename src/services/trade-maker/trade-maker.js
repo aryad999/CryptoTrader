@@ -19,11 +19,11 @@ function submitTradeOrder(TradeOrder) {
             }
             return storeTrade(trade);
         })
-        .then(()=>{
+        .then(() => {
 
         })
-        .catch((err)=>{
-            
+        .catch((err) => {
+
         })
 }
 
