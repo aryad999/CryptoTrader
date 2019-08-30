@@ -7,8 +7,9 @@ function up(db, callback) {
         " volume DECIMAL(14,8) NOT NULL, " +
         " price DECIMAL(10,2) NOT NULL, " +
         " time INT(11) NOT NULL, " +
-        " type VARCHAR(32) NOT NULL, " +
-        " action VARCHAR(32) NOT NULL) ;";
+        " action VARCHAR(32) NOT NULL, " +
+        " type VARCHAR(32) NOT NULL); ";
+
 
 
     db.runSql(query, [], callback);
