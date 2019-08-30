@@ -11,5 +11,8 @@ module.exports = {
         user: process.env.mysql_user,
         password: process.env.mysql_pass,
         database: process.env.mysql_database
+    },
+    risk:{
+        default_order_volume: process.env.risk_default_order_volume
     }
 }

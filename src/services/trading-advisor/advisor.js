@@ -5,6 +5,7 @@ const DataManager = require('../data-manager/manager');
 const SMA = require('./strategy/sma');
 const Trades = require('./models/db/trades');
 const TradeCandles = require('./models/db/trade-candles');
+const RiskManager = require('../trading-advisor/risk-manager/risk-manager');
 
 let sma_period_5 = [];
 let sma_period_8 = [];
@@ -24,7 +25,7 @@ function beginAnalysis(recentCandles) {
             if (result.length > 0) {
                 let trade_type = result[0].action;
                 if (trade_type === 'sell') {
-
+                    createOrderFromUpCross();
                 } else if (trade_type === 'buy') {
 
                 }
@@ -35,6 +36,12 @@ function beginAnalysis(recentCandles) {
     // SMA.calculateDownCross(sma_period_5, sma_period_8, sma_period_13)
 }
 
+function createOrderFromUpCross() {
+    let upCross = SMA.calculateUpCross(sma_period_5, sma_period_8, sma_period_13);
+    if (upCross.didCross) {
+
+    }
+}
 
 
 
