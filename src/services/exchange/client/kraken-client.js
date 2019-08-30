@@ -295,6 +295,7 @@ function addStandardOrder(tradeOrder) {
 		body: qs.stringify(postData)
 	}
 
+	logger.info(options);
 	return new Promise((resolve, reject) => {
 		request(options, (err, response, body) => {
 			if (err) {
@@ -303,7 +304,7 @@ function addStandardOrder(tradeOrder) {
 			}
 			else {
 				const returnresponse = JSON.parse(body);
-
+				logger.info(returnresponse);
 				resolve(returnresponse);
 
 			}
@@ -312,14 +313,19 @@ function addStandardOrder(tradeOrder) {
 
 }
 
-
-function cancelOpenOrder() {
+/**
+ * 
+ * @param {string} txid transaction id of the order to be cancelled. 
+ * NOTE: txid may be a user reference id.
+ */
+function cancelOpenOrder(txid) {
 	let uri = '/' + kraken_api_version + '/private/Balance';
 	let url = kraken_api_url + uri;
 
 	let nonce = (new Date() * 1000);
 	let postData = {
-		nonce: nonce
+		nonce: nonce,
+		txid: txid
 	};
 
 	let headersJSON = {
@@ -333,7 +339,7 @@ function cancelOpenOrder() {
 		headers: headersJSON,
 		body: qs.stringify(postData)
 	}
-
+	logger.info(options);
 	return new Promise((resolve, reject) => {
 		request(options, (err, response, body) => {
 			if (err) {

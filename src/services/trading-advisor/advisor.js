@@ -30,14 +30,11 @@ function beginAnalysis(recentCandles) {
                 if (trade_type === 'sell') {
                     createOrderFromUpCross();
                 } else if (trade_type === 'buy') {
-
+                    createOrderFromDownCross();
                 }
             }
         })
-    let cross = SMA.calculateUpCross(sma_period_5, sma_period_8, sma_period_13);
-    logger.info(cross);
-    // SMA.calculateDownCross(sma_period_5, sma_period_8, sma_period_13)
-}
+    }
 
 function createOrderFromUpCross() {
     let upCross = SMA.calculateUpCross(sma_period_5, sma_period_8, sma_period_13);
@@ -45,6 +42,19 @@ function createOrderFromUpCross() {
         let tradeOrder = new TradeOrder(
             Currency.XBTUSD,
             'buy',
+            'market',
+            RiskManager.calculateOrderVolume()
+        );
+        TradeMaker.submitTradeOrder(tradeOrder);
+    }
+}
+
+function createOrderFromDownCross() {
+    let downCross = SMA.calculateDownCross(sma_period_5, sma_period_8, sma_period_13);
+    if (downCross.didCross) {
+        let tradeOrder = new TradeOrder(
+            Currency.XBTUSD,
+            'sell',
             'market',
             RiskManager.calculateOrderVolume()
         );
