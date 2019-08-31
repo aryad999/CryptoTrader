@@ -1,15 +1,22 @@
 require('dotenv').config({ path: '../../../../.env' });
+const logger = require('../../../../utils/logger').getLogger();
 const request = require('request');
 const crypto = require('crypto');
 const qs = require('qs');
 const KrakenConfig = require('../../../../config').kraken;
-const logger = require('../../../../utils/logger').getLogger();
 
 const kraken_api_key = KrakenConfig.api_key;
 const kraken_secret_api_key = KrakenConfig.secret_api_key;
 const kraken_api_url = KrakenConfig.api_url;
 const kraken_api_version = KrakenConfig.api_version;
 
+/**
+ * kraken api private methods need to use a api-sign value in the POST body
+ * based on the following function
+ * @param {string} path 
+ * @param {object} postData 
+ * @param {number} nonce 
+ */
 function createMessageSignature(path, postData, nonce) {
 	const message = qs.stringify(postData); //POST data as string
 	const secret_buffer = new Buffer.from(kraken_secret_api_key, 'base64');
@@ -356,18 +363,6 @@ function cancelOpenOrder(txid) {
 	});
 
 }
-
-
-getOpenOrders()
-	.then(result => {
-		logger.info(JSON.stringify(result));
-		return getClosedOrders();
-
-	})
-	.then(result => {
-		logger.info(JSON.stringify(result))
-	})
-
 
 module.exports.getAccountBalance = getAccountBalance;
 module.exports.getOpenOrders = getOpenOrders;

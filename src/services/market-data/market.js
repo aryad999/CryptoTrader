@@ -1,3 +1,4 @@
+const logger = require('../../../utils/logger').getLogger();
 const KrakenConfig = require('../../../config').kraken;
 const WebSocket = require('ws');
 const EventManager = require('../market-data/events/event-manager');
@@ -33,7 +34,6 @@ function subscribeToMarket() {
                 interval: Time.minuteEquivalent.HOUR_4
             }
         };
-        console.log('marketWS_4h sub payload: ' + JSON.stringify(subscriptionPayload));
         marketWS_4h.send(JSON.stringify(subscriptionPayload));
     });
 
