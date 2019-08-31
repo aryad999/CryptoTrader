@@ -20,9 +20,9 @@ function beginAnalysis(recentCandles) {
     let sma_period_8 = SMA.calculateSMA(recentCandles, 8);
     let sma_period_13 = SMA.calculateSMA(recentCandles, 13);
 
-    //check order table to see if order has been placed and is a buy order-> if so, check for downcross to see when to sell order
-    //if no last buy orders, see if opportunity exists to buy by checking upcross-> if so, check with risk management to then place order
 
+    //determine if should look at upcross or downcross
+    //based on the last trade that was made
     Trades.getByMostRecent('4h', 1)
         .then((result) => {
             if (result.length > 0) {
@@ -49,6 +49,7 @@ function createOrderFromUpCross() {
             'market',
             RiskManager.calculateOrderVolume()
         );
+        tradeOrder.candleTime = upCross.time;
         TradeMaker.submitTradeOrder(tradeOrder);
     }
 }
@@ -62,6 +63,7 @@ function createOrderFromDownCross() {
             'market',
             RiskManager.calculateOrderVolume()
         );
+        tradeOrder.candleTime = downCross.time;
         TradeMaker.submitTradeOrder(tradeOrder);
     }
 }
