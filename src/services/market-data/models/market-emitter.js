@@ -13,7 +13,7 @@ class MarketEmitter extends EventEmitter {
 
     constructor() {
         super();
-        this.lastEmittedTickTimestamp = Date.now();
+        this.lastEmittedTickTimestamp = 0;
     }
 
     emitNewTick(tick) {
@@ -32,15 +32,12 @@ class MarketEmitter extends EventEmitter {
             candlestick: candlestick,
             ohlc: ohlcTickData
         }
-        logger.info(tickData);
-
 
         this.emit(MarketEvents.NEW_TICK, tickData);
         
         // updates last emitted tick timestamp to represent a new candlestick period
-        // note: it is possible to receive updated candlestick data that is 
+        // note: it IS possible to receive updated candlestick data that is 
         // still within the current candlestick time period
-
         if (this.lastEmittedTickTimestamp !== candlestick.time) {
             this.lastEmittedTickTimestamp = candlestick.time;
             logger.info('updated lasttickTime stamp: ' + this.lastEmittedTickTimestamp + " -> " + candlestick.time);

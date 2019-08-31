@@ -50,16 +50,6 @@ let listener_4h = (tickData) => {
 
 };
 
-let listener_24h = (tickData) => {
-    logger.info(tickData)
-    let ohlc = tickData.ohlc;
-
-    ohlcData.insert('24h', ohlc)
-        .then((result) => {
-
-        })
-};
-
 function updateMostRecentCandles_4h() {
     return ohlcData.getByMostRecent('4h', 50)
         .then((results) => {
@@ -80,12 +70,6 @@ function updateMostRecentCandles_4h() {
             logger.error(err);
         });
 }
-function setupMarketListeners() {
-    //setup listeners and subscribe to markets
-    listenToMarket_4h();
-    listenToMarket_24h();
-
-}
 
 function listenToMarket_4h() {
     EventManager.marketEvent_4h.subscribeToNewTick(listener_4h);
@@ -96,9 +80,6 @@ function unsubFromMarket_4h() {
 }
 
 function listenToMarket_24h() {
-    let listener = (tickData) => {
-        console.log('listener candlestick: ' + JSON.stringify(tickData));
-    };
     EventManager.marketEvent_24h.subscribeToNewTick(listener);
 }
 
@@ -106,5 +87,11 @@ function unsubFromMarket_24h() {
     EventManager.marketEvent_24h.unsubscribeFromNewTick(listener_24h);
 }
 
+function setupMarketListeners() {
+    //setup listeners and subscribe to markets
+    listenToMarket_4h();
+    listenToMarket_24h();
+
+}
 
 module.exports.setupMarketListeners = setupMarketListeners;
