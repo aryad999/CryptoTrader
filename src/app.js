@@ -2,9 +2,9 @@ require('dotenv').config({ path: '../.env' });
 const logger = require('../utils/logger').getLogger();
 const dbMigration = require('./models/db/db-migration');
 const Market = require('./services/market-data/market');
-const MarketManager = require('./services/data-manager/manager');
+const DataManager = require('./services/data-manager/manager');
 const ohlcData = require('./services/market-data/models/db/ohlc-data');
-const insertOhlcScript = require('../scripts/node_scripts/insert-recent-ohlc');
+const insertOhlcScript = require('../scripts/insert-recent-ohlc');
 
 // Run database migrations
 dbMigration.run(() => {
@@ -31,7 +31,8 @@ dbMigration.run(() => {
 
 
 function listenToMarket() {
-    MarketManager.setupMarketListeners();
+    //setup and add the listeners to the market emitters
+    DataManager.setupMarketListeners();
 
     //begin subscription to market data
     Market.subscribeToMarket();
