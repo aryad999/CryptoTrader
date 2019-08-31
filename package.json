@@ -1,13 +1,13 @@
 {
   "name": "cryptotrader",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Crypto Trading Bot",
+  "main": "app.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aryad999/CryptoTrader.git"
   },
-  "author": "",
+  "author": "aryad",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/aryad999/CryptoTrader/issues"
@@ -24,8 +24,5 @@
     "request": "^2.88.0",
     "ws": "^7.1.1"
   },
-  "scripts": {
-    "start": "",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+  "scripts": {}
 }
