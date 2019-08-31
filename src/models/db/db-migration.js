@@ -1,7 +1,7 @@
+const logger = require('../../../utils/logger').getLogger();
 const mysqlConfig = require('../../../config').mysql;
 const DBMigrate = require('db-migrate');
 
-const logger = require('../../../utils/logger').getLogger();
 
 
 const options = {
@@ -27,10 +27,9 @@ const options = {
     }
 };
 
-logger.info(options);
 function run(callback) {
 
-    logger.info('Running migrations...');
+    logger.info('Running DB migrations...');
     var migrate = DBMigrate.getInstance(true, options);
     migrate.up(function (err) {
         if (err) {
