@@ -14,5 +14,8 @@ module.exports = {
     },
     risk:{
         default_order_volume: process.env.risk_default_order_volume
+    },
+    logger:{
+        debug: true
     }
 }

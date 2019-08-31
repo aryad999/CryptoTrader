@@ -30,9 +30,6 @@ let listener_4h = (tickData) => {
         tickOHLC[8]
     )
 
-    console.log('lastCandleTime' + lastCandleTime);
-    console.log('ohlc.time' + ohlc.time);
-
     if (lastCandleTime !== ohlc.time) { //insert new candle data in db
         ohlcData.insert('4h', ohlc)
             .then((result) => {

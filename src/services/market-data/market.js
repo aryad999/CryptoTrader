@@ -48,7 +48,7 @@ function subscribeToMarket() {
     //             interval: Time.minuteEquivalent.HOUR_24
     //         }
     //     };
-    //     console.log('marketWS_24h sub payload: ' + JSON.stringify(subscriptionPayload));
+    //     logger.info('marketWS_24h sub payload: ' + JSON.stringify(subscriptionPayload));
     //     marketWS_24h.send(JSON.stringify(subscriptionPayload));
     // });
 
@@ -57,11 +57,11 @@ function subscribeToMarket() {
         if (messageData.event == marketEventStatuses.HEARTBEAT) {
             
         } else if (messageData.event == marketEventStatuses.SYSTEM_STATUS) {
-            console.log(JSON.stringify('SYSTEM_STATUS: ' + JSON.stringify(messageData)));
+            logger.info(JSON.stringify('SYSTEM_STATUS: ' + JSON.stringify(messageData)));
         } else if (messageData.event == marketEventStatuses.SUBSCRIPTION_STATUS) {
-            console.log(JSON.stringify('SYSTEM_STATUS: ' + JSON.stringify(messageData)));
+            logger.info(JSON.stringify('SYSTEM_STATUS: ' + JSON.stringify(messageData)));
         } else {
-            console.log('messageData: ' + messageData);
+            logger.info('messageData: ' + messageData);
             EventManager.marketEvent_4h.emitNewTick(messageData);
         }
 
@@ -70,7 +70,7 @@ function subscribeToMarket() {
     // marketWS_24h.on('message', (data) => {
     //     let messageData = JSON.parse(data);
     //     if (messageData.event != 'heartbeat') {
-    //         console.log('marketWS_24h on(message) ' + JSON.stringify(messageData));
+    //         logger.info('marketWS_24h on(message) ' + JSON.stringify(messageData));
     //         EventManager.marketEvent_24h.emitNewTick();
     //     }
 

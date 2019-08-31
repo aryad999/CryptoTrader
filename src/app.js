@@ -17,9 +17,9 @@ dbMigration.run(() => {
     ohlcData.getByTimestamp('4h', 0)
         .then((results) => {
             if (results.length === 0) {
-                logger.info('results.length === 0')
+                logger.info('Empty OHLC tables. Begining to fill...');
                 insertOhlcScript.run(() => {
-                    logger.info('DONE SCRIPTS');
+                    logger.info('Fill OHLC tables complete.');
                     listenToMarket();
                 });
             } else {
