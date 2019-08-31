@@ -10,7 +10,6 @@ const Candlestick = require('./models/candlestick');
 const TradingAdvisor = require('../trading-advisor/advisor');
 
 let recentCandles_4h = [];
-let recentCandles_24h = [];
 
 let listener_4h = (tickData) => {
     logger.info(tickData)
@@ -79,19 +78,10 @@ function unsubFromMarket_4h() {
     EventManager.marketEvent_4h.unsubscribeFromNewTick(listener_4h);
 }
 
-function listenToMarket_24h() {
-    EventManager.marketEvent_24h.subscribeToNewTick(listener);
-}
-
-function unsubFromMarket_24h() {
-    EventManager.marketEvent_24h.unsubscribeFromNewTick(listener_24h);
-}
-
 function setupMarketListeners() {
     //setup listeners and subscribe to markets
     listenToMarket_4h();
-    listenToMarket_24h();
-
+  
 }
 
 module.exports.setupMarketListeners = setupMarketListeners;
