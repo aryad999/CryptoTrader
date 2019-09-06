@@ -4,12 +4,12 @@
 class TradeOrder {
     candleTime;
     constructor(
-        assetPair,
+        currencyPair,
         action,
         type,
         volume
     ){
-        this.assetPair = assetPair;
+        this.currencyPair = currencyPair;
         this.action = action;
         this.type = type;
         this.volume = volume

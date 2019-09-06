@@ -12,10 +12,10 @@ function submitTradeOrder(TradeOrder) {
             logger.info(result);
             let price = result;
             let trade = {
-                currency_pair: TradeOrder.currency_pair,
+                currencyPair: TradeOrder.currencyPair,
                 volume: TradeOrder.volume,
-                price: '',
-                time: '',
+                price: '1',
+                time: Math.floor(Date.now()/1000),
                 action: TradeOrder.action,
                 type: TradeOrder.type
             }

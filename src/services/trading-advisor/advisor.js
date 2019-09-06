@@ -83,9 +83,9 @@ function createOrderFromDownCross(shortSMA, midSMA, longSMA) {
  * @param {number} timeVariance Time variance in MINUTES
  */
 function isTradeTimeRecent(tradeTime, timeVariance) {
-    let tradeTimeVariance = (Date.now() / 1000) - tradeTime;
+    let tradeTimeVariance = (new Date / 1000) - tradeTime;
     logger.info(tradeTimeVariance);
-    return (tradeTimeVariance < timeVariance * 60);
+    return (tradeTimeVariance < (timeVariance * 60));
 }
 
 module.exports.beginAnalysis = beginAnalysis;
