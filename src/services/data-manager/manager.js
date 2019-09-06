@@ -10,9 +10,8 @@ const Candlestick = require('./models/candlestick');
 const TradingAdvisor = require('../trading-advisor/advisor');
 
 let recentCandles_4h = [];
-
+let lastCandleTime_4h;
 let listener_4h = (tickData) => {
-    let lastCandleTime = EventManager.marketEvent_4h.lastEmittedTickTimestamp;
     let tickOHLC = tickData.ohlc;
     let ohlc = new OHLC(
         currency.XBTUSD,
@@ -45,6 +44,7 @@ let listener_4h = (tickData) => {
                 TradingAdvisor.beginAnalysis(recentCandles_4h);
             })
     }
+    lastCandleTime = ohlc.time;
 
 };
 
@@ -80,7 +80,7 @@ function unsubFromMarket_4h() {
 function setupMarketListeners() {
     //setup listeners and subscribe to markets
     listenToMarket_4h();
-  
+
 }
 
 module.exports.setupMarketListeners = setupMarketListeners;

@@ -40,7 +40,6 @@ class MarketEmitter extends EventEmitter {
         // still within the current candlestick time period
         if (this.lastEmittedTickTimestamp !== candlestick.time) {
             this.lastEmittedTickTimestamp = candlestick.time;
-            logger.info('updated lasttickTime stamp: ' + this.lastEmittedTickTimestamp + " -> " + candlestick.time);
         }
 
     }
