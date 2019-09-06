@@ -45,9 +45,7 @@ function createOrderFromUpCross(shortSMA, midSMA, longSMA) {
     if (upCross.didCross) {
         logger.warn('createOrderFromUpCross upcross: ')
         logger.warn(upCross)
-        let tradeTimeVariance = (Date.now() / 1000) - upCross.time;
-        logger.info(tradeTimeVariance);
-        if (tradeTimeVariance < Time.minuteEquivalent.MINUTES_1 * 60) {
+        if (isTradeTimeRecent(upCross.time, Time.minuteEquivalent.MINUTES_1)) {
             let tradeOrder = new TradeOrder(
                 Currency.XBTUSD,
                 'buy',
@@ -66,17 +64,28 @@ function createOrderFromDownCross(shortSMA, midSMA, longSMA) {
     logger.warn('createOrderFromDownCross downcross: ')
     logger.warn(downCross)
     if (downCross.didCross) {
-        let tradeOrder = new TradeOrder(
-            Currency.XBTUSD,
-            'sell',
-            'market',
-            RiskManager.calculateOrderVolume()
-        );
-        tradeOrder.candleTime = downCross.time;
-        TradeMaker.submitTradeOrder(tradeOrder);
+        if (isTradeTimeRecent(downCross.time, Time.minuteEquivalent.MINUTES_1)) {
+            let tradeOrder = new TradeOrder(
+                Currency.XBTUSD,
+                'sell',
+                'market',
+                RiskManager.calculateOrderVolume()
+            );
+            tradeOrder.candleTime = downCross.time;
+            TradeMaker.submitTradeOrder(tradeOrder);
+        }
     }
 }
 
-
+/**
+ * 
+ * @param {number} tradeTime 
+ * @param {number} timeVariance Time variance in MINUTES
+ */
+function isTradeTimeRecent(tradeTime, timeVariance) {
+    let tradeTimeVariance = (Date.now() / 1000) - tradeTime;
+    logger.info(tradeTimeVariance);
+    return (tradeTimeVariance < timeVariance * 60);
+}
 
 module.exports.beginAnalysis = beginAnalysis;

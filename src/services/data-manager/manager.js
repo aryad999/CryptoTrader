@@ -51,7 +51,6 @@ let listener_4h = (tickData) => {
 function updateMostRecentCandles_4h() {
     return ohlcData.getByMostRecent('4h', 50)
         .then((results) => {
-            logger.info(results)
             recentCandles_4h = [];
             _.forEach(results, (result) => {
                 let candle = new Candlestick(
@@ -64,7 +63,6 @@ function updateMostRecentCandles_4h() {
                 );
                 recentCandles_4h.push(candle);
             })
-            logger.info(recentCandles_4h)
         })
         .catch((err) => {
             logger.error(err);
