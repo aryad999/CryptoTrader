@@ -15,9 +15,9 @@ dbMigration.run(() => {
     ohlcData.getByTimestamp('4h', 0)
         .then((results) => {
             if (results.length === 0) {
-                logger.info('Empty OHLC tables. Begining to fill...');
+                logger.warn('Empty OHLC tables. Begining to fill...');
                 insertOhlcScript.run(() => {
-                    logger.info('Fill OHLC tables complete.');
+                    logger.warn('Fill OHLC tables complete.');
                     listenToMarket();
                 });
             } else {
@@ -38,3 +38,5 @@ function listenToMarket() {
     Market.subscribeToMarket();
     logger.info('Currently subscribed to market data...');
 }
+
+//---------------------------TODO: change back time from minutes_1 to hour_4---------------------------
