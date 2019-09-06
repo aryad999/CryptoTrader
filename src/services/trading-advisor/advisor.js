@@ -44,6 +44,8 @@ function beginAnalysis(recentCandles) {
 function createOrderFromUpCross() {
     let upCross = SMA.calculateUpCross(sma_period_5, sma_period_8, sma_period_13);
     if (upCross.didCross) {
+        logger.warn('createOrderFromUpCross upcross: ')
+        logger.warn(upcross)
         let tradeOrder = new TradeOrder(
             Currency.XBTUSD,
             'buy',
@@ -58,6 +60,8 @@ function createOrderFromUpCross() {
 //NOTE: will only create order if downcross condition is met
 function createOrderFromDownCross() {
     let downCross = SMA.calculateDownCross(sma_period_5, sma_period_8, sma_period_13);
+    logger.warn('createOrderFromDownCross downcross: ')
+    logger.warn(downCross)
     if (downCross.didCross) {
         let tradeOrder = new TradeOrder(
             Currency.XBTUSD,

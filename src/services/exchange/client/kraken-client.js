@@ -278,6 +278,8 @@ function getOpenPositions() {
 
 
 function addStandardOrder(tradeOrder) {
+	logger.warn('addStandardOrder');
+	logger.warn(tradeOrder)
 	let uri = '/' + kraken_api_version + '/private/Balance';
 	let url = kraken_api_url + uri;
 

@@ -29,7 +29,7 @@ function subscribeToMarket() {
             pair: [KrakenConfig.currencyPair.xbt_usd],
             subscription: {
                 name: KrakenConfig.subscriptionName.ohlc,
-                interval: Time.minuteEquivalent.HOUR_4
+                interval: Time.minuteEquivalent.MINUTES_5
             }
         };
         marketWS_4h.send(JSON.stringify(subscriptionPayload));
