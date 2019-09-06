@@ -40,6 +40,7 @@ function beginAnalysis(recentCandles) {
         })
 }
 
+//NOTE: will only create order if upcross condition is met
 function createOrderFromUpCross() {
     let upCross = SMA.calculateUpCross(sma_period_5, sma_period_8, sma_period_13);
     if (upCross.didCross) {
@@ -54,6 +55,7 @@ function createOrderFromUpCross() {
     }
 }
 
+//NOTE: will only create order if downcross condition is met
 function createOrderFromDownCross() {
     let downCross = SMA.calculateDownCross(sma_period_5, sma_period_8, sma_period_13);
     if (downCross.didCross) {
