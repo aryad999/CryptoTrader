@@ -24,12 +24,11 @@ function calculateSMA(candles, period) {
         }
         smas.push(sma);
     }
-    logger.info(smas);
     return smas;
 }
 
 /**
- * 
+ * Calculates the upcross point(candle) given the short, mid and long smas
  * @param {array} shortPeriodSMA 
  * @param {array} midPeriodSMA 
  * @param {array} longPeriodSMA 
@@ -45,10 +44,6 @@ function calculateUpCross(shortPeriodSMA, midPeriodSMA, longPeriodSMA) {
         let previousLongSMA = longPeriodSMA[i + 1];
 
         if ((shortSMA.value > midSMA.value) && (previousShortSMA.value < previousMidSMA.value)) {
-            logger.info('BUY ORDER AT')
-            logger.info(shortSMA)
-            logger.info('UPCROSS MID CANDLE 1:')
-            logger.info(midSMA)
             let cross = {
                 didCross: true,
                 time: shortSMA.time
@@ -64,7 +59,7 @@ function calculateUpCross(shortPeriodSMA, midPeriodSMA, longPeriodSMA) {
 
 
 /**
- * 
+ * Calculates the downcross point(candle) given the short, mid and long smas
  * @param {array} shortPeriodSMA 
  * @param {array} midPeriodSMA 
  * @param {array} longPeriodSMA 
@@ -77,11 +72,13 @@ function calculateDownCross(shortPeriodSMA, midPeriodSMA, longPeriodSMA) {
         let longSMA = longPeriodSMA[i];
         let previousShortSMA = shortPeriodSMA[i + 1];
         let previousMidSMA = midPeriodSMA[i + 1];
-        let previousLongSMA = longPeriodSMA[i + 1];
 
         if ((shortSMA.value < midSMA.value) && (previousShortSMA.value > previousMidSMA.value)) {
-            logger.info('DOWNCROSS SHORT CANDLE')
-            logger.info(shortSMA);
+            let cross = {
+                didCross: true,
+                time: shortSMA.time
+            }
+            return cross;
         }
     }
 }
