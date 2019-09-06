@@ -41,9 +41,11 @@ function subscribeToMarket() {
         if (messageData.event == marketEventStatuses.HEARTBEAT) {
             //heartbeat statuses let the bot know that the websocket connection is still alive
         } else if (messageData.event == marketEventStatuses.SYSTEM_STATUS) {
-            logger.info('Market Websocket - 4h: Received SYSTEM_STATUS');
+            logger.warn('------ Market Websocket - 4h: Received SYSTEM_STATUS: ------');
+            logger.warn(messageData);
         } else if (messageData.event == marketEventStatuses.SUBSCRIPTION_STATUS) {
-            logger.info('Market Websocket - 4h: Received SUBSCRIPTION_STATUS');
+            logger.warn('------ Market Websocket - 4h: Received SUBSCRIPTION_STATUS: ------');
+            logger.warn(messageData);
         } else {
             //emit the new data to interested listeners
             EventManager.marketEvent_4h.emitNewTick(messageData);

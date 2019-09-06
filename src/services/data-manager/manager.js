@@ -12,7 +12,6 @@ const TradingAdvisor = require('../trading-advisor/advisor');
 let recentCandles_4h = [];
 
 let listener_4h = (tickData) => {
-    logger.info(tickData)
     let lastCandleTime = EventManager.marketEvent_4h.lastEmittedTickTimestamp;
     let tickOHLC = tickData.ohlc;
     let ohlc = new OHLC(
