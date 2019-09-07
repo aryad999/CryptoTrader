@@ -81,6 +81,9 @@ function calculateDownCross(shortPeriodSMA, midPeriodSMA, longPeriodSMA) {
             return cross;
         }
     }
+    return {
+        didCross: false
+    }
 }
 module.exports.calculateSMA = calculateSMA;
 module.exports.calculateUpCross = calculateUpCross;

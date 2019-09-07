@@ -8,8 +8,6 @@ const insertOhlcScript = require('../scripts/insert-recent-ohlc');
 
 // Run database migrations
 dbMigration.run(() => {
-    logger.info('callback of run migrations');
-
     //check if ohlc tables are populated with historical data
     //and if not fill them with historical ohlc data
     ohlcData.getByTimestamp('4h', 0)
