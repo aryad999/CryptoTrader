@@ -37,4 +37,3 @@ function listenToMarket() {
     logger.info('Currently subscribed to market data...');
 }
 
-//---------------------------TODO: change back time from minutes_1 to hour_4---------------------------

@@ -18,8 +18,6 @@ function beginAnalysis(recentCandles) {
     let sma_period_5 = SMA.calculateSMA(recentCandles, 5);
     let sma_period_8 = SMA.calculateSMA(recentCandles, 8);
     let sma_period_13 = SMA.calculateSMA(recentCandles, 13);
-    logger.info('beginAnalysis Called');
-
     //determine if should look at upcross or downcross
     //based on the last trade that was made
     Trades.getByMostRecent('4h', 1)
@@ -43,8 +41,6 @@ function beginAnalysis(recentCandles) {
 function createOrderFromUpCross(shortSMA, midSMA, longSMA) {
     let upCross = SMA.calculateUpCross(shortSMA, midSMA, longSMA);
     if (upCross.didCross) {
-        logger.warn('createOrderFromUpCross upcross: ')
-        logger.warn(upCross)
         if (isTradeTimeRecent(upCross.time, Time.minuteEquivalent.HOUR_4)) {
             let tradeOrder = new TradeOrder(
                 Currency.XBTUSD,
@@ -61,8 +57,6 @@ function createOrderFromUpCross(shortSMA, midSMA, longSMA) {
 //NOTE: will only create order if downcross condition is met
 function createOrderFromDownCross(shortSMA, midSMA, longSMA) {
     let downCross = SMA.calculateDownCross(shortSMA, midSMA, longSMA);
-    logger.warn('createOrderFromDownCross downcross: ')
-    logger.warn(downCross)
     if (downCross.didCross) {
         if (isTradeTimeRecent(downCross.time, Time.minuteEquivalent.HOUR_4)) {
             let tradeOrder = new TradeOrder(
@@ -84,7 +78,6 @@ function createOrderFromDownCross(shortSMA, midSMA, longSMA) {
  */
 function isTradeTimeRecent(tradeTime, timeVariance) {
     let tradeTimeVariance = (new Date / 1000) - tradeTime;
-    logger.info(tradeTimeVariance);
     return (tradeTimeVariance < (timeVariance * 60));
 }
 
