@@ -26,7 +26,23 @@ let listener_4h = (tickData) => {
         tickOHLC[7],
         tickOHLC[8]
     )
+    if (lastCandleTime_4h === undefined) {
+        ohlcData.getByMostRecent('4h', 1)
+            .then(result => {
+                lastCandleTime_4h = result.time;
+                setupAndBeginAnalysis(ohlc.time);
+            })
+            .catch(err => {
+                logger.error(err);
+            })
+    } else {
+        setupAndBeginAnalysis(ohlc.time);
+    }
+    lastCandleTime_4h = ohlc.time;
 
+
+};
+function setupAndBeginAnalysis() {
     if (lastCandleTime_4h !== ohlc.time) { //insert new candle data in db
         ohlcData.insert('4h', ohlc)
             .then((result) => {
@@ -44,9 +60,8 @@ let listener_4h = (tickData) => {
                 TradingAdvisor.beginAnalysis(recentCandles_4h);
             })
     }
-    lastCandleTime_4h = ohlc.time;
+}
 
-};
 
 function updateMostRecentCandles_4h() {
     return ohlcData.getByMostRecent('4h', 50)

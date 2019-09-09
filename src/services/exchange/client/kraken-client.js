@@ -286,10 +286,11 @@ function addStandardOrder(tradeOrder) {
 	let nonce = (new Date() * 1000);
 	let postData = {
 		nonce: nonce,
-		pair: tradeOrder.currency_pair,
+		pair: tradeOrder.currencyPair,
 		type: tradeOrder.action,
 		ordertype: tradeOrder.type,
-		volume: tradeOrder.volume
+		volume: tradeOrder.volume,
+		validate: true
 	};
 
 	let headersJSON = {

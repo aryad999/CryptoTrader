@@ -78,6 +78,7 @@ function createOrderFromDownCross(shortSMA, midSMA, longSMA) {
  */
 function isTradeTimeRecent(tradeTime, timeVariance) {
     let tradeTimeVariance = (new Date / 1000) - tradeTime;
+    logger.info('tradeTimeVariance' + tradeTimeVariance);
     return (tradeTimeVariance < (timeVariance * 60));
 }
 
