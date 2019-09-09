@@ -51,7 +51,7 @@ function run(callback) {
 
 
     //Setup 4h time interval ohlc table
-    let ohlc_4h_promise = MarketHistory.ohlc('XBTUSD', time.MINUTES_1)
+    let ohlc_4h_promise = MarketHistory.ohlc('XBTUSD', time.HOUR_4)
         .then(ohlcDataResult => {
             async function insertOHLC_4h() {
                 let ohlcDataArray = ohlcDataResult.result['XXBTZUSD'];
@@ -61,7 +61,7 @@ function run(callback) {
                     let ohlcResult = ohlcDataArray[i];
                     let ohlc = new OHLC(
                         'XBTUSD',
-                        time.MINUTES_5,
+                        time.HOUR_4,
                         ohlcResult[0],
                         ohlcResult[0],
                         ohlcResult[1],

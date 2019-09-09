@@ -45,7 +45,7 @@ function createOrderFromUpCross(shortSMA, midSMA, longSMA) {
     if (upCross.didCross) {
         logger.warn('createOrderFromUpCross upcross: ')
         logger.warn(upCross)
-        if (isTradeTimeRecent(upCross.time, Time.minuteEquivalent.MINUTES_1)) {
+        if (isTradeTimeRecent(upCross.time, Time.minuteEquivalent.HOUR_4)) {
             let tradeOrder = new TradeOrder(
                 Currency.XBTUSD,
                 'buy',
@@ -64,7 +64,7 @@ function createOrderFromDownCross(shortSMA, midSMA, longSMA) {
     logger.warn('createOrderFromDownCross downcross: ')
     logger.warn(downCross)
     if (downCross.didCross) {
-        if (isTradeTimeRecent(downCross.time, Time.minuteEquivalent.MINUTES_1)) {
+        if (isTradeTimeRecent(downCross.time, Time.minuteEquivalent.HOUR_4)) {
             let tradeOrder = new TradeOrder(
                 Currency.XBTUSD,
                 'sell',
