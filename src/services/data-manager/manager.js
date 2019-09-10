@@ -31,7 +31,7 @@ let listener_4h = (tickData) => {
             .then(result => {
                 logger.info('lastCandleTime_4h === undefined');
                 logger.info(result)
-                lastCandleTime_4h = result.time;
+                lastCandleTime_4h = result[0].time;
                 setupAndBeginAnalysis(ohlc);
             })
             .catch(err => {
@@ -41,7 +41,7 @@ let listener_4h = (tickData) => {
         setupAndBeginAnalysis(ohlc);
         lastCandleTime_4h = ohlc.time;
     }
-    
+
 
 
 };

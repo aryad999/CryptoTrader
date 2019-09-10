@@ -6,7 +6,7 @@ const TradeCandles = require('../trading-advisor/models/db/trade-candles');
 
 
 function submitTradeOrder(TradeOrder) {
-    let tradeTime;
+    let tradeTime = Math.floor(Date.now() / 1000);
     KrakenClient.addStandardOrder(TradeOrder)
         .then(result => {
             let price = result;
@@ -14,7 +14,7 @@ function submitTradeOrder(TradeOrder) {
                 currencyPair: TradeOrder.currencyPair,
                 volume: TradeOrder.volume,
                 price: '1',
-                time: Math.floor(Date.now()/1000),
+                time: tradeTime,
                 action: TradeOrder.action,
                 type: TradeOrder.type
             }
@@ -24,12 +24,12 @@ function submitTradeOrder(TradeOrder) {
             let tradeCandle = {
                 trade_id: results.insertId,
                 candle_interval: TradeOrder.candleTime,
-                time: ''
+                time: tradeTime
             };
             return TradeCandles.insert(tradeCandle)
         })
-        .then(() => {
-
+        .then((result) => {
+            logger.info(' after TradeCandles.insert(tradeCandle)');
         })
         .catch((err) => {
 
