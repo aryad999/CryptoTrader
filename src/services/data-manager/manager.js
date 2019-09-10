@@ -29,20 +29,23 @@ let listener_4h = (tickData) => {
     if (lastCandleTime_4h === undefined) {
         ohlcData.getByMostRecent('4h', 1)
             .then(result => {
+                logger.info('lastCandleTime_4h === undefined');
+                logger.info(result)
                 lastCandleTime_4h = result.time;
-                setupAndBeginAnalysis(ohlc.time);
+                setupAndBeginAnalysis(ohlc);
             })
             .catch(err => {
                 logger.error(err);
             })
     } else {
-        setupAndBeginAnalysis(ohlc.time);
+        setupAndBeginAnalysis(ohlc);
     }
     lastCandleTime_4h = ohlc.time;
 
 
 };
-function setupAndBeginAnalysis() {
+
+function setupAndBeginAnalysis(ohlc) {
     if (lastCandleTime_4h !== ohlc.time) { //insert new candle data in db
         ohlcData.insert('4h', ohlc)
             .then((result) => {

@@ -41,6 +41,7 @@ function beginAnalysis(recentCandles) {
 function createOrderFromUpCross(shortSMA, midSMA, longSMA) {
     let upCross = SMA.calculateUpCross(shortSMA, midSMA, longSMA);
     if (upCross.didCross) {
+        logger.info('upCross time ' + upCross.time)
         if (isTradeTimeRecent(upCross.time, Time.minuteEquivalent.HOUR_4)) {
             let tradeOrder = new TradeOrder(
                 Currency.XBTUSD,
@@ -58,6 +59,7 @@ function createOrderFromUpCross(shortSMA, midSMA, longSMA) {
 function createOrderFromDownCross(shortSMA, midSMA, longSMA) {
     let downCross = SMA.calculateDownCross(shortSMA, midSMA, longSMA);
     if (downCross.didCross) {
+        logger.info('downcross time ' + downCross.time)
         if (isTradeTimeRecent(downCross.time, Time.minuteEquivalent.HOUR_4)) {
             let tradeOrder = new TradeOrder(
                 Currency.XBTUSD,
@@ -78,7 +80,7 @@ function createOrderFromDownCross(shortSMA, midSMA, longSMA) {
  */
 function isTradeTimeRecent(tradeTime, timeVariance) {
     let tradeTimeVariance = (new Date / 1000) - tradeTime;
-    logger.info('tradeTimeVariance' + tradeTimeVariance);
+    logger.info('tradeTimeVariance ' + tradeTimeVariance);
     return (tradeTimeVariance < (timeVariance * 60));
 }
 
