@@ -20,4 +20,5 @@ function calculateOrderVolume() {
 }
 
 module.exports.calculateOrderVolume = calculateOrderVolume;
+module.exports.allowedToBuy = allowedToBuy;
 module.exports.setLastBuyOrderTime = setLastBuyOrderTime;

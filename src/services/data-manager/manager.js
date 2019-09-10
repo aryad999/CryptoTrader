@@ -39,8 +39,9 @@ let listener_4h = (tickData) => {
             })
     } else {
         setupAndBeginAnalysis(ohlc);
+        lastCandleTime_4h = ohlc.time;
     }
-    lastCandleTime_4h = ohlc.time;
+    
 
 
 };

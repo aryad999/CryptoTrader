@@ -9,7 +9,6 @@ function submitTradeOrder(TradeOrder) {
     let tradeTime;
     KrakenClient.addStandardOrder(TradeOrder)
         .then(result => {
-            logger.info(result);
             let price = result;
             let trade = {
                 currencyPair: TradeOrder.currencyPair,

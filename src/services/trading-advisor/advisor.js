@@ -50,7 +50,10 @@ function createOrderFromUpCross(shortSMA, midSMA, longSMA) {
                 RiskManager.calculateOrderVolume()
             );
             tradeOrder.candleTime = upCross.time;
-            TradeMaker.submitTradeOrder(tradeOrder);
+            if (RiskManager.allowedToBuy()) {
+                TradeMaker.submitTradeOrder(tradeOrder);
+                RiskManager.setLastBuyOrderTime(Math.round(Date.now() / 1000));
+            }
         }
     }
 }
