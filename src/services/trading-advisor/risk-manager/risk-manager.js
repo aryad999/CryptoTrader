@@ -3,19 +3,19 @@ const Config = require('../../../../config').risk;
 
 let lastBuyOrderTimestamp = 0;
 
-function allowedToBuy(){
-    if((Date.now()/1000 - lastBuyOrderTimestamp) < 20000){
+function allowedToBuy() {
+    if ((Date.now() / 1000 - lastBuyOrderTimestamp) < 20000) {
         return false;
-    }else {
+    } else {
         return true;
     }
 }
 
-function setLastBuyOrderTime(timestamp){
+function setLastBuyOrderTime(timestamp) {
     lastBuyOrderTimestamp = timestamp;
 }
 
-function calculateOrderVolume(){
+function calculateOrderVolume() {
     return Config.default_order_volume;
 }
 
