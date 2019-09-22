@@ -6,7 +6,7 @@ const DataManager = require('./services/data-manager/manager');
 const ohlcData = require('./services/market-data/models/db/ohlc-data');
 const insertOhlcScript = require('../scripts/insert-recent-ohlc');
 
-// Run database migrations
+
 dbMigration.run(() => {
     //check if ohlc tables are populated with historical data
     //and if not fill them with historical ohlc data
@@ -29,10 +29,9 @@ dbMigration.run(() => {
 
 
 function listenToMarket() {
-    //setup and add the listeners to the market emitters
+    
     DataManager.setupMarketListeners();
 
-    //begin subscription to market data
     Market.subscribeToMarket();
     logger.info('Currently subscribed to market data...');
 }
