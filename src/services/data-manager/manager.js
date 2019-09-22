@@ -29,8 +29,6 @@ let listener_4h = (tickData) => {
     if (lastCandleTime_4h === undefined) {
         ohlcData.getByMostRecent('4h', 1)
             .then(result => {
-                logger.info('lastCandleTime_4h === undefined');
-                logger.info(result)
                 lastCandleTime_4h = result[0].time;
                 setupAndBeginAnalysis(ohlc);
             })

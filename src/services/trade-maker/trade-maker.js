@@ -29,7 +29,7 @@ function submitTradeOrder(TradeOrder) {
             return TradeCandles.insert(tradeCandle)
         })
         .then((result) => {
-            logger.info(' after TradeCandles.insert(tradeCandle)');
+            logger.info('TradeCandles.insert(tradeCandle) complete.');
         })
         .catch((err) => {
 
