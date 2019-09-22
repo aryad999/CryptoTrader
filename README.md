@@ -7,8 +7,15 @@ Currently, the bot trades the bitcoin USD pairing and is focused on taking long 
 ## Architecture
 
 
-##Setup & Installation
+## Setup & Installation
 First clone the project in the desired folder.
 As it is a node project, to install the required project node modules run the command:
-> npm install
+```
+ npm install
+```
 
+To run the bot, navigate to the project src folder and then run:
+
+```
+node app.js
+```
