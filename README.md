@@ -7,7 +7,7 @@ Currently, the bot trades the bitcoin USD pairing (XBTUSD) and is focused on tak
 ## Architecture
 The bot receives the required market data through a websocket stream connected to the kraken exchange.
 It then formats the data to the corresponding models for further processing and analysis. The advisor portion
-of the bot comes up with potential trade orders which are then executed by the trade maker.
+of the bot determmines potential trade orders which are then executed by the trade maker.
 
 The bot currently contains the following services:
 
