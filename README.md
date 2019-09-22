@@ -14,8 +14,11 @@ The bot currently contains the following services:
 * market-data
 * data-manager
 * exchange
-* tradeing-advisor
+* trading-advisor
 * trade-maker
+
+The services are each responsible for different processes to achieve the larger goal of making successful trades.
+They are designed to be self-contained and encapsulating of the domain they are assigned to.
 
 ## Setup & Installation
 First clone the project in the desired folder.
