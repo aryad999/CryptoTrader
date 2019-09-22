@@ -28,9 +28,6 @@ function createMessageSignature(path, postData, nonce) {
 	return hmac_digest;
 }
 
-/**
- * 
- */
 function getAccountBalance() {
 	let uri = '/' + kraken_api_version + '/private/Balance';
 	let url = kraken_api_url + uri;
@@ -69,9 +66,6 @@ function getAccountBalance() {
 
 }
 
-/**
- * 
- */
 function getOpenOrders() {
 	let uri = '/' + kraken_api_version + '/private/OpenOrders';
 	let url = kraken_api_url + uri;
@@ -110,9 +104,6 @@ function getOpenOrders() {
 
 }
 
-/**
- * 
- */
 function getClosedOrders() {
 	let uri = '/' + kraken_api_version + '/private/ClosedOrders';
 	let url = kraken_api_url + uri;
@@ -151,10 +142,6 @@ function getClosedOrders() {
 
 }
 
-/**
- * 
- * @param {array} transactionIDs array of transactions ids to get info for
- */
 function queryOrdersInfo(transactionIDs) {
 	let uri = '/' + kraken_api_version + '/private/QueryOrders';
 	let url = kraken_api_url + uri;
@@ -194,9 +181,6 @@ function queryOrdersInfo(transactionIDs) {
 
 }
 
-/**
- * 
- */
 function getTradesHistory() {
 	let uri = '/' + kraken_api_version + '/private/TradesHistory';
 	let url = kraken_api_url + uri;
@@ -235,9 +219,6 @@ function getTradesHistory() {
 
 }
 
-/**
- * 
- */
 function getOpenPositions() {
 	let uri = '/' + kraken_api_version + '/private/OpenPositions';
 	let url = kraken_api_url + uri;
@@ -289,8 +270,7 @@ function addStandardOrder(tradeOrder) {
 		pair: tradeOrder.currencyPair,
 		type: tradeOrder.action,
 		ordertype: tradeOrder.type,
-		volume: tradeOrder.volume,
-		validate: true
+		volume: tradeOrder.volume
 	};
 
 	let headersJSON = {
@@ -323,11 +303,6 @@ function addStandardOrder(tradeOrder) {
 
 }
 
-/**
- * 
- * @param {string} txid transaction id of the order to be cancelled. 
- * NOTE: txid may be a user reference id.
- */
 function cancelOpenOrder(txid) {
 	let uri = '/' + kraken_api_version + '/private/Balance';
 	let url = kraken_api_url + uri;

@@ -12,7 +12,7 @@ const mysqlConnSettings = {
 const pool = mysql.createPool(mysqlConnSettings);
 
 /**
- * 
+ * Function to query the mysql database using a connection pool.
  * @param {string} query query to be executed
  * @param {array} params array of params to be inserted into query string
  * @returns promise of query result

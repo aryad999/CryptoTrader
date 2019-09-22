@@ -62,7 +62,6 @@ function createOrderFromUpCross(shortSMA, midSMA, longSMA) {
 function createOrderFromDownCross(shortSMA, midSMA, longSMA) {
     let downCross = SMA.calculateDownCross(shortSMA, midSMA, longSMA);
     if (downCross.didCross) {
-        logger.info('downcross time ' + downCross.time)
         if (isTradeTimeRecent(downCross.time, Time.minuteEquivalent.HOUR_4)) {
             let tradeOrder = new TradeOrder(
                 Currency.XBTUSD,
