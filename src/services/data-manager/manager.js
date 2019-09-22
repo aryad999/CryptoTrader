@@ -95,7 +95,7 @@ function unsubFromMarket_4h() {
 }
 
 function setupMarketListeners() {
-    //setup listeners and subscribe to markets
+   
     listenToMarket_4h();
 
 }

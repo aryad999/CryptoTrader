@@ -1,7 +1,7 @@
 const Connection = require('../../../../models/db/connection');
 
 /**
- * 
+ * Insert ohlc candle with corresponding data into ohlc table
  * @param {string} timeInterval market time interval (ex: 4h)
  * @param {OHLC} params [currency_pair, updated_time, time, open, high, low, close, vwap, volume, count]
  */
@@ -29,7 +29,7 @@ function insert(timeInterval, ohlc) {
 
 
 /**
- * 
+ * Update ohlc candle data based on timestamp condition
  * @param {*} timeInterval market time interval (ex: 4h)
  * @param {*} time timestamp for ohlc
  * @param {OHLC} ohlc [updated_time, time, open, high, low, close, vwap, volume, count]
