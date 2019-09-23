@@ -33,3 +33,4 @@ Then navigate to the project src folder and then run:
 ```
 node app.js
 ```
+![app.js-startup-image](https://imgur.com/a/Zn3FeMq)
