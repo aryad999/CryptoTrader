@@ -75,7 +75,7 @@ function createOrderFromDownCross(shortSMA, midSMA, longSMA) {
 }
 
 /**
- * 
+ * Checks if the trade time is within a variance of the current time
  * @param {number} tradeTime 
  * @param {number} timeVariance Time variance in MINUTES
  */
