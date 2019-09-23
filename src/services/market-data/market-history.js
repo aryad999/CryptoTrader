@@ -4,11 +4,6 @@ const headerBase = {
     contentType: "application/x-www-form-urlencoded"
 }
 
-/**
- * 
- * @param {*} pair currency pair 
- * @param {*} interval minutes
- */
 function ohlc(pair, interval) {
     let headersJSON = {
         "User-Agent": headerBase.userAgent,

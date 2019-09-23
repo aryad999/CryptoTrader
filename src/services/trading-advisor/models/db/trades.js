@@ -16,10 +16,7 @@ function getByMostRecent(timeInterval, limit) {
     return Connection.query(query, params);
 }
 
-/**
- * 
- * @param {*} trade 
- */
+
 function insert(trade) {
     const query =
         " INSERT INTO trades " +

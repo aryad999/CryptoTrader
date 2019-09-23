@@ -1,7 +1,4 @@
-/**
- * 
- * @param {*} trade_candle 
- */
+
 function insert(trade_candle) {
     const query =
         " INSERT INTO trade_candles " +

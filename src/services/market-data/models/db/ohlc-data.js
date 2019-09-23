@@ -67,7 +67,7 @@ function updateByTimestamp(timeInterval, time, ohlc) {
 }
 
 /**
- * 
+ * Retrieve ohlc candles based on timestamp condition
  * @param {string} timeInterval market time interval (ex: 4h)
  * @param {*} timestampFrom unix timestamp
  */
@@ -83,7 +83,7 @@ function getByTimestamp(timeInterval, timestampFrom) {
 }
 
 /**
- * 
+ * Get the n=limit most recent ohlc candles
  * @param {string} timeInterval market time interval (ex: 4h)
  * @param {number} limit numnber of most recent candles
  */
